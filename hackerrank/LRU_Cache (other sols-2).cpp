@@ -1,3 +1,4 @@
+// using STL list, pair and map.
 class LRUCache {
     int cp;
     map<int, list<pair<int, int> >::iterator> mp;
