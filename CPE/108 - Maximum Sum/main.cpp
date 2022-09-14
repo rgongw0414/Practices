@@ -3,49 +3,35 @@
 #define pb push_back
 #define endl '\n'
 using namespace std;
-//test
+
+int max1d(vector<int> &rec){
+    return 0;
+}
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(NULL);
-    ll n, m;
-    vector<int> rec, indices;
-    while (cin >> n){
+    int n;
+    cout << INT_MIN << endl;
+    while (cin >> n) {
         if (n == 0) break;
-        int e;
-        rec.reserve(n*n);
-        indices.reserve(n*n);
-        while (m--) {
-            cin >> e;
-            rec.pb(e);
+        int max = INT_MIN;
+        vector<vector<int>> rec(n, vector<int>(n, 0));
+        for (auto& row: rec){
+            for(auto& elem: row){
+                cin >> elem;
+            }
         }
 
-        ll sum = 0, max = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (sum + rec[i*n + j] > sum){
-                    sum = sum + rec[i*n + j];
+            vector<int> sum(n, 0);
+            for (int j = i; j < n; j++) {
+                // cout << rec[i][j] << " ";
+                for (int k = 0; k < n; k++){
 
                 }
             }
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                cout << rec[i*n + j] << " ";
-            }
             cout << endl;
         }
-
-        // int rst = 0;
-        // for (auto &i: rec){
-        //     if (rst == n) {
-        //         cout << endl;
-        //         rst = 0;
-        //     }
-        //     cout << i << " ";
-        //     rst++;
-        // }
-        cout << endl;
-        rec.clear();
     }
 }
