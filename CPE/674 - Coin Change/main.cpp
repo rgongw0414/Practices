@@ -12,7 +12,7 @@ int main() {
     int n;
     while (cin >> n) {
         if (n <= 0) {
-            cout << 0 << endl;
+            cout << 1 << endl;
         }
         else {
             int N = n;
@@ -21,11 +21,12 @@ int main() {
                 for (int v = 0; v <= n; v++) {
                     for (int k = 0; k < n / c[i]; k++) {
                         if (v - k * c[i] >= 0) {
-                            
+                            dp[v]
+
                         }
-                        dp[v]
                     }
                 }
+
             }
         }
     }
