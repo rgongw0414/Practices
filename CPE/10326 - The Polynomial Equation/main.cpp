@@ -36,7 +36,6 @@ int main() {
         }
         reverse(coef.begin(), coef.end());
         auto iter = coef.begin();
-        bool msd = true;
         int nn = n;
         while (nn >= -1) {
             if (nn == n) {
@@ -45,8 +44,8 @@ int main() {
             }
             else {
                 if (nn > 0 && *iter != 0) {
-                    if (*iter > 0) cout << " + ";// << *iter;
-                    else if (*iter < 0) cout << " - ";// << *iter * (-1);
+                    if (*iter > 0) cout << " + ";
+                    else if (*iter < 0) cout << " - ";
                     if (abs(*iter) != 1) cout << abs(*iter) << "x";
                     else cout << "x";
                     if (nn > 1) cout << "^" << nn;
