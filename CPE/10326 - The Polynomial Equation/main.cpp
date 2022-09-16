@@ -23,26 +23,42 @@ int main() {
         coef[0] = roots[0];
         vector<ll> rc(2, 0);
         rc[1] = 1;
-        for (int r = 1; r < n; r++) {
-            cout << "r: " << r << endl;
-            // i:   0, 1, 2, ...
-            // ci: c0, c1, c2, ...
-            // e.g. -1 + x => c0 = -1, c1 = 1
-            rc[0] = roots[r];
-            for (int j = 2; j <= n; j++) {
-                vector<ll> coefTmp(n+1, 0);
-                for (int k = 0; k <= j; k++) {
-                    for (int i = 0; i <= 1; i++) {
-                        coefTmp[i+k] += rc[i] * coef[k];
-                    }
+        rc[0] = roots[1]; //******
+        for (int j = 1; j < n; j++) { //******
+            vector<ll> coefTmp(n+1, 0);
+            for (int k = 0; k <= j; k++) {
+                for (int i = 0; i <= 1; i++) {
+                    coefTmp[i+k] += rc[i] * coef[k];
                 }
-                coef = coefTmp;
             }
+            coef = coefTmp;
+            rc[0] = roots[j+1]; //******
         }
         reverse(coef.begin(), coef.end());
-        for (auto &c: coef) {
-            cout << c << " ";
+        auto iter = coef.begin();
+        bool msd = true;
+        int nn = n;
+        while (nn >= -1) {
+            if (nn == n) {
+                if (nn == 1) cout << "x";
+                else cout << "x^" << nn;
+            }
+            else {
+                if (nn > 0 && *iter != 0) {
+                    if (*iter > 0) cout << " + ";// << *iter;
+                    else if (*iter < 0) cout << " - ";// << *iter * (-1);
+                    if (abs(*iter) != 1) cout << abs(*iter) << "x";
+                    else cout << "x";
+                    if (nn > 1) cout << "^" << nn;
+                }
+                if (nn == 0) {
+                    if (*iter >= 0) cout << " + " << *iter;
+                    else cout << " - " << *iter * (-1);
+                    cout << " = 0\n";
+                }
+            }
+            iter++;
+            nn--;
         }
-        cout << endl;
     }
 }
