@@ -31,7 +31,7 @@ void solve() {
             if (o == 'E') {
                 if (x + 1 > X) {
                     if (!scent[x][y]) {
-                        scent[x][y] = true;
+                        scent[x][y] = true; // mark this coord., don't let other robots go beyond the border.
                         lost = true;
                     }
                 }
