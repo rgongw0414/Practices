@@ -4,116 +4,80 @@
 #define eb emplace_back
 using namespace std;
 
-    /*
-        E -L-> N 
-        E -R-> S
-        W -L-> S
-        W -R-> N
-        S -L-> E
-        S -R-> W
-        N -L-> W
-        N -R-> E
-    */
+static int X, Y; // cord: (0, 0) ~ (X, Y)
+static int x, y;
+static char o;
+static vector<vector<bool>> scent;
+
+void solve() {
+    bool lost = false;
+    string insts;
+    cin >> insts;
+    for (auto& inst: insts) {
+        if (lost) break;
+        if (inst == 'R') {
+            if (o == 'E') o = 'S';
+            else if (o == 'W') o = 'N';
+            else if (o == 'S') o = 'W';
+            else if (o == 'N') o = 'E';
+        }
+        else if (inst == 'L') {
+            if (o == 'E') o = 'N';
+            else if (o == 'W') o = 'S';
+            else if (o == 'S') o = 'E';
+            else if (o == 'N') o = 'W';
+        }
+        else if (inst == 'F') {
+            if (o == 'E') {
+                if (x + 1 > X) {
+                    if (!scent[x][y]) {
+                        scent[x][y] = true;
+                        lost = true;
+                    }
+                }
+                else x++;  
+            } 
+            else if (o == 'W') {
+                if (x - 1 < 0) {
+                    if (!scent[x][y]) {
+                        scent[x][y] = true;
+                        lost = true;
+                    }
+                }
+                else x--;  
+            }
+            else if (o == 'S') {
+                if (y - 1 < 0) {
+                    if (!scent[x][y]) {
+                        scent[x][y] = true;
+                        lost = true;
+                    }
+                }
+                else y--;  
+            }
+            else if (o == 'N') {
+                if (y + 1 > Y) {
+                    if (!scent[x][y]) {
+                        scent[x][y] = true;
+                        lost = true;
+                    }
+                }
+                else y++;  
+            }
+        }
+    }
+    cout << x << " " << y << " " << o;
+    if (lost) cout << " LOST";
+    cout << endl;
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(NULL);
 
-    int X, Y; // cord: (0, 0) ~ (X, Y)
     cin >> X >> Y;
-    vector<vector<bool>> scent(X+1, vector<bool>(Y+1, false));
-    int x, y;
-    char o;
-    string insts;
+    scent.assign(X+1, vector<bool>(Y+1, false));
     while (cin >> x >> y >> o) {
-        cin >> insts;
-        bool lost = false;
-        for (auto& inst: insts) {
-            // if (lost) continue;
-            if (inst == 'R') {
-                if (o == 'E') o = 'S';
-                else if (o == 'W') o = 'N';
-                else if (o == 'S') o = 'W';
-                else if (o == 'N') o = 'E';
-            }
-            else if (inst == 'L') {
-                if (o == 'E') o = 'N';
-                else if (o == 'W') o = 'S';
-                else if (o == 'S') o = 'E';
-                else if (o == 'N') o = 'W';
-            }
-            else if (inst == 'F') {
-                if (o == 'E') {
-                    if (!scent[x+1][y]) {
-                        x++;  
-                        if (x > X) {
-                            x--;
-                            lost = true;
-                            scent[x][y] = true;
-                        }
-                    }
-                } 
-                else if (o == 'W') {
-                    if (!scent[x-1][y]) {
-                        x--;
-                        if (x < 0) {
-                            x++;
-                            lost = true;
-                            scent[x][y] = true;
-                        }
-                    }
-                }
-                else if (o == 'S') {
-                    if (!scent[x][y-1]) {
-                        y--;
-                        if (y < 0) {
-                            y++;
-                            lost = true;
-                            scent[x][y] = true;
-                        }
-                    }
-                }
-                else if (o == 'N') {
-                    if (!scent[x][y+1]) {
-                        y++;
-                        if (y > Y) {
-                            y--;
-                            lost = true;
-                            scent[x][y] = true;
-                        }
-                    }
-                }
-            }
-        }
-        cout << x << " " << y << " " << o;
-        if (lost) cout << " LOST";
-        cout << endl;
+        solve();
     }
 }
-
-/*
-5 3
-0 3 W
-LL E
-FFF 3 3 E
-L 3 3 N
-F 3 3 LOST 
-L W
-F 2 3
-L 2 3 S
-
-3 2 N
-F 3 3 N
-RR 3 3 S
-F 3 2 S
-LL 3 2 N
-FF 3 3 N LOST
-RR 3 3 S
-F 3 2 S
-LL 3 2 N
-*/
-
-/*
-0, 3 ... 5, 3
-
-0, 0 ... 5, 0
-*/
