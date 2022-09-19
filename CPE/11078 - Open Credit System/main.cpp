@@ -18,32 +18,23 @@ int main() {
     pair<int, int> pinit(0, 0);
     while (t--) {
         cin >> n; // the num of students, 2 <= n <= 1e5
-        list<pair<int, int>> score(n, pinit);
-        int i = 0;
+        vector<pair<int, int>> score(n, pinit);
+        // list<pair<int, int>> score(n, pinit);
+        int index = 0;
         int s;
         for (auto &p: score) {
             cin >> s;
-            // score.eb(make_pair(i, s));
-            p.first += i; p.second += s;
-            i++;
+            p.first += index; p.second += s;
+            index++;
         }
-        // while (n--) {
-        //     int s;
-        //     cin >> s;
-        //     score.eb(make_pair(i, s));
-        //     // score[i] = s;
-        //     i++;
-        // }
-        n = score.size();
-        score.sort(comp_score); // sort the score in ascending order
-        auto r_score = score;
-        reverse(r_score.begin(), r_score.end());
+        
+        sort(score.begin(), score.end(), comp_score); // sort the score in ascending order
         int max = INT_MIN;
-        for (auto a = score.begin(); a != score.end(); a++) {
-            for (auto b = r_score.begin(); b != r_score.end(); b++) {
-                if ((*a).first != (*b).first) {
-                    if ((*a).first < (*b).first) {
-                        if ((*a).second - (*b).second > max) max = (*a).second - (*b).second;
+        for (int i = 0; i < n; i++) {
+            for (int j = n-1; j >= 0; j--) {
+                if (score[i].first != score[j].first) {
+                    if (score[i].first < score[j].first) {
+                        if (score[i].second - score[j].second > max) max = score[i].second - score[j].second;
                     }
                 }
             }
