@@ -20,6 +20,7 @@ int main() {
 
     int X, Y; // cord: (0, 0) ~ (X, Y)
     cin >> X >> Y;
+    vector<vector<bool>> scent(X+1, vector<bool>(Y+1, false));
     int x, y;
     char o;
     string insts;
@@ -27,6 +28,7 @@ int main() {
         cin >> insts;
         bool lost = false;
         for (auto& inst: insts) {
+            // if (lost) continue;
             if (inst == 'R') {
                 if (o == 'E') o = 'S';
                 else if (o == 'W') o = 'N';
@@ -40,33 +42,44 @@ int main() {
                 else if (o == 'N') o = 'W';
             }
             else if (inst == 'F') {
-                // lost = false;
                 if (o == 'E') {
-                    x++;  
-                    if (x > X) {
-                        x--;
-                        lost = true;
+                    if (!scent[x+1][y]) {
+                        x++;  
+                        if (x > X) {
+                            x--;
+                            lost = true;
+                            scent[x][y] = true;
+                        }
                     }
                 } 
                 else if (o == 'W') {
-                    x--;
-                    if (x < 0) {
-                        x++;
-                        lost = true;
+                    if (!scent[x-1][y]) {
+                        x--;
+                        if (x < 0) {
+                            x++;
+                            lost = true;
+                            scent[x][y] = true;
+                        }
                     }
                 }
                 else if (o == 'S') {
-                    y--;
-                    if (y < 0) {
-                        y++;
-                        lost = true;
+                    if (!scent[x][y-1]) {
+                        y--;
+                        if (y < 0) {
+                            y++;
+                            lost = true;
+                            scent[x][y] = true;
+                        }
                     }
                 }
                 else if (o == 'N') {
-                    y++;
-                    if (y > Y) {
-                        y--;
-                        lost = true;
+                    if (!scent[x][y+1]) {
+                        y++;
+                        if (y > Y) {
+                            y--;
+                            lost = true;
+                            scent[x][y] = true;
+                        }
                     }
                 }
             }
