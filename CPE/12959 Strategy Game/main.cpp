@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #define ll long long
 #define eb emplace_back
+#define ef emplace_front
 #define endl '\n'
 using namespace std;
 
@@ -12,7 +13,6 @@ int main() {
     while (cin >> j >> r) {
         if (j == 0 && r == 0) break;
         vector<int> vp(j, 0);
-        // n = j * r;
         while (r--) {
             for (auto& p: vp) {
                 cin >> n;
