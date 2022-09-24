@@ -6,7 +6,7 @@
 #define endl '\n'
 using namespace std;
 
-vector<int> TIME(8784+1, 0);
+vector<int> TIME(8784+1, 0); // TIME: 0000 ~ 8784
 struct node {
     int extension;
     vector<int> time=TIME;
@@ -30,9 +30,11 @@ void solve(int time, int target) {
 }
 
 int main() {
+    //*** can't use with printf, it would cause wrong answer, because of the printing order. ***//
     // ios::sync_with_stdio(0);
     // cin.tie(NULL);
-    
+    //*** can't use with printf, it would cause wrong answer, because of the printing order. ***//
+
     int n, c = 1;
     cin >> n;
     cout << "CALL FORWARDING OUTPUT\n";
