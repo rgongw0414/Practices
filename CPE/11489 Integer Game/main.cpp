@@ -8,7 +8,7 @@ using namespace std;
 
 char solve() {
     string n;
-    // n.reserve(1000);
+    n.reserve(1000);
     cin >> n;
     char win;
     int sum = 0;
@@ -46,8 +46,8 @@ char solve() {
         }
         else digs.erase(digs.find(N));
 
-        if (sFound) sFound = false;
-        if (tFound) tFound = false;
+        sFound = false;
+        tFound = false;
     }
     return win;
 }
