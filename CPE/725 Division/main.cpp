@@ -43,10 +43,8 @@ void solve2(int n) {
             if (c == 0) {
                 flag = 1;
                 if (n < 10000 && num*n < 10000) continue;
-                if (num*n < 10000) cout << 0;
-                cout << num*n << " / ";
-                if (num < 10000) cout << 0; 
-                cout << num << " = " << n << endl;
+                cout << setw(5) << setfill('0') << num*n << " / ";
+                cout << setw(5) << setfill('0') << num << " = " << n << endl;
             }
         }
     }
@@ -62,10 +60,12 @@ int main() {
     // for (auto &n: nums) cout << n << endl;
 
     int n;
+    bool start = false;
     while (cin >> n) { // 2 <= n <= 79
         if (n == 0) break;
+        if (start) cout << endl;
+        start = true;
         solve2(n);
-        cout << endl;
         // 01234 ~ 98765
         // n1 / n2 = n, find all (n1, n2) pairs.
     }
