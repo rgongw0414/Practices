@@ -12,7 +12,7 @@ using namespace std;
 vector<bool> primeT(MAX+1, true); // 0 ~ 9999999
 vector<int> prime; // 0 ~ 9999999
 
-// void solve(int &i) {
+// void solve(int &i) { // this is freaking SLOW!
 //     int sMAX = sqrt(9999999);
 //     for (auto &n: prime) {
 //         if (n > sMAX) continue;
@@ -50,7 +50,7 @@ int main() {
     primeT[0] = false;
     primeT[1] = false;
 
-	for (int i = 2; i*i < MAX+1; ++i) {
+	for (int i = 2; i*i < MAX+1; ++i) { // this is much more faster!
 		for (int j = 2; j*i < MAX+1; ++j) {
 			primeT[i*j] = false;
 		}
