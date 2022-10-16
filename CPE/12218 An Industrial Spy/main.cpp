@@ -10,7 +10,7 @@ using namespace std;
 #define MAX 9999999
 
 vector<bool> primeT(MAX+1, true); // 0 ~ 9999999
-vector<int> prime; // 0 ~ 9999999
+// vector<int> prime; // 0 ~ 9999999
 
 // void solve(int &i) { // this is freaking SLOW!
 //     int sMAX = sqrt(9999999);
