@@ -1,124 +1,56 @@
+//uva10415
+#include <stdio.h>
+#include <stdlib.h> 
+#include <string.h> 
 #include <bits/stdc++.h>
-#define ll long long
-#define ld long double
-#define endl '\n'
-#define eb emplace_back
-#define ef emplace_front
 using namespace std;
 
-vector<bool> solve(char n) {
-    vector<bool> f(11, false); // 1 ~ 10
-    if (n == 'c') {
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-        f[8] = true;
-        f[9] = true;
-        f[10] = true;
-    }
-    else if (n == 'd') {
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-        f[8] = true;
-        f[9] = true;
-    }
-    else if (n == 'e') {
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-        f[8] = true;
-    }
-    else if (n == 'f') {
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-    }
-    else if (n == 'g') {
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-    }
-    else if (n == 'a') {
-        f[2] = true;
-        f[3] = true;
-    }
-    else if (n == 'b') {
-        f[2] = true;
-    }
-    else if (n == 'C'){
-        f[3] = true;
-    }
-    else if (n == 'D') {
-        f[1] = true;
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-        f[8] = true;
-        f[9] = true;
-    }
-    else if (n == 'E') {
-        f[1] = true;
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-        f[8] = true;
-    }
-    else if (n == 'F') {
-        f[1] = true;
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-        f[7] = true;
-    }
-    else if (n == 'G') {
-        f[1] = true;
-        f[2] = true;
-        f[3] = true;
-        f[4] = true;
-    }
-    else if (n == 'A') {
-        f[1] = true;
-        f[2] = true;
-        f[3] = true;
-    }
-    else if (n == 'B') {
-        f[1] = true;
-        f[2] = true;
-    }
-    return f;
-}
- 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        string s;
-        cin >> s;
-        vector<int> fc(11, 0); // use fc[1] ~ fc[10]
-        auto n = s.begin();
-        while (true) {
-            auto now = solve(*n);
-            n++;
-            if (n == s.end()) break;
-            else auto next = solve(*n);
-            for (int i = 1; i <= 10; i++) {
-                if (!now[i] && next[i]) fc[i]++;
-            }
-            n++;
-        }
-        for (int i = 1; i <= 10; i++) {
-            cout << fc[i] << " ";
-        }
-        cout << endl;
-    }
+int main(){
+	int n ;
+	cin >> n;
+	while(n--){
+		int i, j, finger[11] = {0}, ans[11] = {0} ;
+		string note;
+		cin >> note;		
+		for(i = 0 ; i < note.size() ; i++){
+			int temp[11] = {0} ;
+			if(note[i] == 'c')
+				temp[2] = temp[3] = temp[4] = temp[7] = temp[8] = temp[9] = temp[10] = 1 ;
+			if(note[i] == 'd')
+				temp[2] = temp[3] = temp[4] = temp[7] = temp[8] = temp[9] = 1 ;
+			if(note[i] == 'e')
+				temp[2] = temp[3] = temp[4] = temp[7] = temp[8] = 1 ;
+			if(note[i] == 'f')
+				temp[2] = temp[3] = temp[4] = temp[7] = 1 ;
+			if(note[i] == 'g')
+				temp[2] = temp[3] = temp[4] = 1 ;															
+			if(note[i] == 'a')
+				temp[2] = temp[3] = 1 ;
+			if(note[i] == 'b')
+				temp[2] = 1 ;								
+			if(note[i] == 'C')
+				temp[3] = 1 ;					
+			if(note[i] == 'D')
+				temp[1] = temp[2] = temp[3] = temp[4] = temp[7] = temp[8] = temp[9] = 1 ;
+			if(note[i] == 'E')
+				temp[1] = temp[2] = temp[3] = temp[4] = temp[7] = temp[8] = 1 ;				
+			if(note[i] == 'F')
+				temp[1] = temp[2] = temp[3] = temp[4] = temp[7] = 1 ;					
+			if(note[i] == 'G')
+				temp[1] = temp[2] = temp[3] = temp[4] = 1 ;	
+			if(note[i] == 'A')
+				temp[1] = temp[2] = temp[3] = 1 ;					
+			if(note[i] == 'B')
+				temp[1] = temp[2] = 1 ;					
+			for(j = 1 ; j <= 10 ; j++){
+				if((temp[j] == 1) && (finger[j] != 1))
+					ans[j] ++ ;
+				finger[j] = temp[j] ;
+			}
+		}
+		for(i = 1 ; i <= 9 ; i++)
+			printf("%d ", ans[i]) ;
+		printf("%d\n", ans[10]) ;
+	}
+	return 0 ;
 }
