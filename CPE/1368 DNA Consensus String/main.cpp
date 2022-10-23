@@ -63,13 +63,47 @@ void solve() {
     cout << min << endl;
 }
 
+void solve2() {
+    int m, n, err;
+    int a[4][1001], temp;
+    string s, s1 = {'A', 'C', 'G', 'T'};
+
+    scanf("%d %d", &m, &n);
+    getchar();
+    memset(a, 0, sizeof(a));
+    for (int i = 0; i<m; i++) {
+        cin >> s;
+        for (int j = 0; j<n; j++) {
+            for (int k = 0; k<4; k++) {
+                if (s[j] == s1[k]) {
+                    a[k][j]++;
+                    break;
+                }
+            }
+        }
+    }
+    err = 0;
+    for (int i = 0; i<n; i++) {
+        temp = max(max(max(a[0][i], a[1][i]), a[2][i]), a[3][i]);
+        err+= (m-temp);
+        for (int j = 0; j<4; j++) {
+            if (temp == a[j][i]) {
+                cout << s1[j];
+                break;
+            }
+        }
+    }
+    printf("\n%d\n", err);
+}
+
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
+    // ios::sync_with_stdio(0);
+    // cin.tie(NULL);
     
     int t;
     cin >> t;
     while (t--) {
-        solve();
+        // solve();
+        solve2();
     }
 }
