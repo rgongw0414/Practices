@@ -15,25 +15,19 @@ int main() {
     // cin.tie(NULL);
     
     ll x;
-    while (cin >> x) {
+    while (scanf("%lld", &x) != EOF) {
         ll a;
         char c;
-        vector<ll> as;
+        vector<ll int> as;
         while (scanf("%lld%c", &a, &c)) {
-            as.eb(a);
             if (c != ' ') break;
+            as.eb(a);
         }
-        ll sum = 0;
-        ll n = as.size();
-        // i: 0~n-2, j(x): n~1
-        if (x != 0) {
-            ll x1 = pow(x, n-1-1);
-            for (ll i = 0, j = n-1; i < n-1; i++, j--) {
-                sum += as[i]*j*x1;
-                x1/=x;
-            }
+        ll sum = 0, x1 = 1;
+        for (ll i = as.size()-1, j = 1; i >= 0; i--, j++) {
+            sum += as[i]*j*x1;
+            x1*=x;
         }
-        else sum = as[as.size()-2];
         cout << sum << endl;
     }
 }
