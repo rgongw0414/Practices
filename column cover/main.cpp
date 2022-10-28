@@ -26,10 +26,12 @@ int main() {
     while (cin >> x >> y) {
         mat[x-1][y-1] = 1;
     }
-    for (auto &r: mat) {
-        for (auto &e: r) {
-            cout << e << ' ';
-        }
-        cout << endl;
-    }
+
+    
+    // for (auto &r: mat) {
+    //     for (auto &e: r) {
+    //         cout << e << ' ';
+    //     }
+    //     cout << endl;
+    // }
 }
