@@ -6,10 +6,6 @@
 #define ef emplace_front
 using namespace std;
 
-void solve() {
-    
-}
-
 vector<int> getMinterms(vector<vector<int>> &mat, int j) {
     vector<int> mints;
     for (int i = 0; i < mat.size(); i++) {
@@ -114,15 +110,20 @@ int main() {
         }
     }
 
+    for (int j = 0; j < y2; j++) {
+        if (mint.size() == x2) break;
+        if (cover.count(j)) continue;
+        auto mints = getMinterms(mat2, j);
+        if (mints.size() == 0) continue;
+        cover.insert(j);
+        for (auto &m: mints) mint.insert(m);
+    }
+
     for (auto &m: mint) cout << m << " ";
     cout << endl;
     for (auto &c: cover) cout << c << " ";
     cout << endl;
-
-    while (mint.size() != x2) {
-
-    }
-
+    
     int sum = 0;
     for (auto &c: cover) {
         cout << weights[c].first << "\t";
@@ -131,7 +132,7 @@ int main() {
     cout << endl;
     cout << "(" << cover.size() << ", " << sum << ")\n";
 
-    for (auto &w: weights) cout << "y" << w.first << "_w: " << w.second << endl;
+    // for (auto &w: weights) cout << "y" << w.first << "_w: " << w.second << endl;
     // for (auto &m: mint_del) cout << m << " ";
     // cout << endl;
     // for (auto &m: prime_del) cout << m << " ";
@@ -142,11 +143,11 @@ int main() {
     //     }
     //     cout << endl;
     // }
-    cout << endl;
-    for (auto &r: mat2) {
-        for (auto &e: r) {
-            cout << e << ' ';
-        }
-        cout << endl;
-    }
+    // cout << endl;
+    // for (auto &r: mat2) {
+    //     for (auto &e: r) {
+    //         cout << e << ' ';
+    //     }
+    //     cout << endl;
+    // }
 }
