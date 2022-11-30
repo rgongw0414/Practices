@@ -1,20 +1,22 @@
-Case #1: Check birth date
-Case #2: 9
-Case #3: Check birth date
-Case #4: 10
-Case #5: Check birth date
-Case #6: Invalid birth date
-Case #7: 10
-Case #8: 12
-Case #9: 124
-Case #10: 85
-Case #11: Check birth date
-Case #12: Invalid birth date
-Case #13: Check birth date
-Case #14: 16
-Case #15: Check birth date
-Case #16: Check birth date
-Case #17: 129
-Case #18: 130
-Case #19: 92
-Case #20: Invalid birth date
+Case #1: Invalid birth date
+Case #2: Check birth date
+Case #3: 23
+Case #4: 0
+Case #5: 1
+Case #6: 0
+Case #7: 14
+Case #8: 8
+Case #9: 7
+Case #10: 8
+Case #11: Invalid birth date
+Case #12: 130
+Case #13: 130
+Case #14: Check birth date
+Case #15: 0
+Case #16: Invalid birth date
+Case #17: 0
+Case #18: Check birth date
+Case #19: Check birth date
+Case #20: 1
+Case #21: Invalid birth date
+Case #22: Check birth date
