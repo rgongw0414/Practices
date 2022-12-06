@@ -14,7 +14,7 @@ bool visit[9];	// 記錄各個點是不是已在MST之中
 void prim() {
     // 如同 Dijkstra's Algorithm ，使用 Priority Queue 可以得到更低的時間複雜度。
 	for (int i=0; i<9; i++) visit[i] = false;
-	for (int i=0; i<9; i++) d[i] = 1e9;
+	for (int i=0; i<9; i++) d[i] = INT_MAX;
 
 	// 選擇任意一點作為樹根。此處選擇第零點作為樹根。
 	d[0] = 0;
