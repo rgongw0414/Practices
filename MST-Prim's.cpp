@@ -23,7 +23,7 @@ void prim() {
 	d[0] = 0;
 	parent[0] = 0;
 
-	// 需要n個edge來建立n個node的MST
+	// 需要n-1個edge來建立n個node的MST
 	// 每個iter新增一個edge (除了最初的iter)
 	for (int i=0; i<9; i++) {
 		// 找不在樹上、離樹最近的點。
