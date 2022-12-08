@@ -6,6 +6,9 @@
 #define endl '\n'
 using namespace std;
 
+
+// reference: https://web.ntnu.edu.tw/~algo/SpanningTree.html#3
+
 int adj[9][9];	// adjacency matrix
 int d[9];		// 記錄目前的MST到圖上各點的距離
 int parent[9];	// 記錄各個點在MST上的父親是誰
@@ -20,6 +23,8 @@ void prim() {
 	d[0] = 0;
 	parent[0] = 0;
 
+	// 需要n個edge來建立n個node的MST
+	// 每個iter新增一個edge (除了最初的iter)
 	for (int i=0; i<9; i++) {
 		// 找不在樹上、離樹最近的點。
 		int a = -1, b = -1, min = 1e9;
@@ -31,11 +36,12 @@ void prim() {
         }
 		// 從起點可連通的點已經找完
 		if (a == -1) break;
-		visit[a] = true;
+		visit[a] = true; // 新增一個 node (edge)，其 parent 已在前一個 iter 決定，可由 parent[a] access。
 
 		// relaxation
 		// 此處與Dijkstra's Algorithm不同
 		// 離樹最近，不是離根最近。
+		// 更新生成樹與新節點的鄰居間的最短距離
 		for (b=0; b<9; b++) {
 			if  (!visit[b] && adj[a][b] < d[b]) {
 				d[b] = adj[a][b];
