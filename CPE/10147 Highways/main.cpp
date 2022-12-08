@@ -43,6 +43,7 @@ int main() {
         vector<double> dist(n, DBL_MAX);
         vector<int> parent(n, 0);
         dist[0] = 0.0;
+		bool flag = true;
         for (int i = 0; i < n; i++) {
             int a = -1;
             double min = DBL_MAX;
@@ -54,6 +55,10 @@ int main() {
             }
             if (a == -1) break;
             visit[a] = true;
+			if (mat[a][parent[a]] != 0.0) {
+                flag = false;
+                cout << a+1 << " " << parent[a]+1 << endl;
+            }
             for (int b = 0; b < n; b++) {
                 if (!visit[b] && mat[a][b] < dist[b]) {
                     dist[b] = mat[a][b];
@@ -62,13 +67,6 @@ int main() {
             }
         }
 
-        bool flag = true;
-        for (int i = 1; i < n; i++) {
-            if (mat[i][parent[i]] != 0.0) {
-                flag = false;
-                cout << i+1 << " " << parent[i]+1 << endl;
-            }
-        }
         if (flag) cout << "No new highways need\n";
         if (t > 0) cout << endl;
     }
