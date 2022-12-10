@@ -27,13 +27,14 @@ int main() {
                 c[j] = max(c[j], c[j-n] + 1);
         }
 
-        for (int i = t; i >= 0; i--) {
-            if (c[i] != -1) {
-                cout << c[i];
-                if (i < t) cout << " " << t-i;
-                break;
-            }
-        }
-        cout << endl;
+        // for (int i = t; i >= 0; i--) {
+        //     if (c[i] != -1) {
+        //         cout << c[i];
+        //         if (i < t) cout << " " << t-i;
+        //         break;
+        //     }
+        // }
+        // cout << endl;
+        for (int i = 0; i <= t; i++) cout << c[i] << " " << t-i << endl;
     }
 }
