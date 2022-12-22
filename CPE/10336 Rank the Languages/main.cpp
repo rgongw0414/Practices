@@ -14,11 +14,11 @@ void dfs(vector<vector<char>> &maze, vector<vector<bool>> &visited, int i, int j
     // (0, 0) ~ (m-1, n-1)
     if (j+1 < n && maze[i][j+1] == maze[i][j] && !visited[i][j+1]) // right
         dfs(maze, visited, i, j+1);
-    if (j-1 >= 0 && maze[i][j-1] == maze[i][j] && !visited[i][j-1]) // left
+    else if (j-1 >= 0 && maze[i][j-1] == maze[i][j] && !visited[i][j-1]) // left
         dfs(maze, visited, i, j-1);
-    if (i-1 >= 0 && maze[i-1][j] == maze[i][j] && !visited[i-1][j]) // up
+    else if (i-1 >= 0 && maze[i-1][j] == maze[i][j] && !visited[i-1][j]) // up
         dfs(maze, visited, i-1, j);
-    if (i+1 < m && maze[i+1][j] == maze[i][j] && !visited[i+1][j]) // down
+    else if (i+1 < m && maze[i+1][j] == maze[i][j] && !visited[i+1][j]) // down
         dfs(maze, visited, i+1, j);
 }
  
