@@ -36,7 +36,7 @@ int main() {
         while (m--) {
             int a, b;
             cin >> a >> b;
-            mat[a-1][b-1] = mat[b-1][a-1] = 0.0;
+            mat[a-1][b-1] = mat[b-1][a-1] = 0.0; // force edge(a, b) to be selected in line 63 first
         }
 
         vector<bool> visit(n, false);
@@ -55,7 +55,7 @@ int main() {
             }
             if (a == -1) break;
             visit[a] = true;
-			if (mat[a][parent[a]] != 0.0) {
+			if (mat[a][parent[a]] != 0.0) { 
                 flag = false;
                 cout << a+1 << " " << parent[a]+1 << endl;
             }
