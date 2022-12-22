@@ -14,11 +14,11 @@ void dfs(vector<vector<char>> &maze, vector<vector<bool>> &visited, int i, int j
     // (0, 0) ~ (m-1, n-1)
     if (j+1 < n && maze[i][j+1] == maze[i][j] && !visited[i][j+1]) // right
         dfs(maze, visited, i, j+1);
-    else if (j-1 >= 0 && maze[i][j-1] == maze[i][j] && !visited[i][j-1]) // left
+    if (j-1 >= 0 && maze[i][j-1] == maze[i][j] && !visited[i][j-1]) // left
         dfs(maze, visited, i, j-1);
-    else if (i-1 >= 0 && maze[i-1][j] == maze[i][j] && !visited[i-1][j]) // up
+    if (i-1 >= 0 && maze[i-1][j] == maze[i][j] && !visited[i-1][j]) // up
         dfs(maze, visited, i-1, j);
-    else if (i+1 < m && maze[i+1][j] == maze[i][j] && !visited[i+1][j]) // down
+    if (i+1 < m && maze[i+1][j] == maze[i][j] && !visited[i+1][j]) // down
         dfs(maze, visited, i+1, j);
 }
  
@@ -56,7 +56,7 @@ int main() {
             }
         }
 
-        for (int i = max; i >= 1; i++) {
+        for (int i = max; i >= 1; i--) {
             for (int j = 0; j < 26; j++) {
                 if (i == count[j]) {
                     char ans = 'a' + j;
@@ -64,11 +64,11 @@ int main() {
                 }
             }
         }
-        for (int i = 0; i < m; i++)  {
-            for (int j = 0; j < n; j++) {
-                cout << visited[i][j];
-            }
-            cout << endl;
-        }
+        // for (int i = 0; i < m; i++)  {
+        //     for (int j = 0; j < n; j++) {
+        //         cout << visited[i][j];
+        //     }
+        //     cout << endl;
+        // }
     }
 }
