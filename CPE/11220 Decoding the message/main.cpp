@@ -3,7 +3,7 @@ using namespace std;
 int main() {
 	int t, c = 1;
 	cin >> t;
-	cin.get(); // catch '\0' of the first line
+	cin.get(); // catch '\0' from the first line
 	cin.get(); // catch second line, i.e. "\0"
 	while(t--) {
 		string s, ans;
