@@ -1,0 +1,45 @@
+8
+
+abc
+abc abc abcd abcd abcd 
+abcd abcd ab ab abc abcd abc abcd abcd abcde
+
+xyz xyz sdsdfk asdkfjls asdfksdkfds
+sksdk  asdfkaslwl ewrlqwe rlasdf sdfksd sadflskd asdfksdkfs asdfkaslwl
+kskoe erierl skiekf  dlflja sklakd mzsoson sadsld  wkks skdjalx jsjd afslkasdfdsfl akdfjasdf
+sdkwe askdfslllsdf sdlflsdlfsalflsdf fdgkfdkgdoerot dfkdgjlckxkf 
+
+This paper proposes a method of flower image classification based on the support vector machine
+There are three main stages in the method
+Perform segmentation on the input flower image and remove the background
+Extract several feature sets from the image
+Train the classification model by SVM with various combinations of feature sets
+The feature sets include color features and texture features The experimental dataset is the flower dataset
+
+In DNA computing many researches focus on those answers of DNA sequences with specific contents or their lengths
+For the minimum finding problem with DNA computing considering sequence lengths is not hard because DNA gel electrophoresis can be used to solve the problem
+Especially the algorithm for solving the minimum or maximum finding problem for encoded DNA sequence on a specific numeral system has never been proposed in the past 
+and our algorithm in this paper is the first one
+
+A special case could happen when finding the head of a given forced path
+The head is located at either the bottom wall of a light block or the lower right corner of a dark block
+We added an If Then Else condition to the algorithm for handling this special case
+Tracing out the resulting sequence without increasing the time and space complexities is also easy
+
+It is true that the example in the previous manuscript is not a counterexample to their formula
+However it is still a fact that their algorithm cannot work correctly for the case
+We modify the DP formula and give some new real counterexamples to their formula
+
+A path consisting of some edges in D and exactly one
+heavy edge will form a valid candidate path for P
+The minimum of such paths can be obtained by examining all
+heavy edges which can be accomplished in E time
+Note that the simplest nested paths are two parallel arcs sharing the
+same starting and ending vertices
+These two parallel arcs are also two parallel paths
+
+In a valid coloring two neighboring nodes cannot be of the same color
+The graph coloring problem is to determine the minimum  number of colors needed to color a given graph
+Condition one may be taken as the exclusive property of the coloring problem
+In other words the set of nodes with the same color can execute the critical step concurrently since they are not adjacent
+Thus the design of a 1-fair alternator system can be transformed into the coloring problem
