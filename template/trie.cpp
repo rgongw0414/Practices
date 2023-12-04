@@ -8,6 +8,7 @@ using namespace std;
 
 class Node {
 public:
+    // smart pointer: unique_ptr<Node>, which automaticlly delete the pointer when it is out of scope.
     unordered_map<char, Node*> children; // hash table from 'a' to 'z'
     bool endOfWord;
     Node() {
@@ -73,3 +74,116 @@ int main() {
     
     solve_14();
 }
+
+/*
+// write a binary search tree
+
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node(int val) {
+        this->val = val;
+        this->left = nullptr;
+        this->right = nullptr;
+    }
+};
+
+class BST {
+    Node* root;
+public:
+    BST() {
+        this->root = nullptr;
+    }
+
+    void insert(int val) {
+        if (this->root == nullptr) {
+            this->root = new Node(val);
+            return;
+        }
+        auto current = this->root;
+        while (true) {
+            if (val < current->val) {
+                if (current->left == nullptr) {
+                    current->left = new Node(val);
+                    break;
+                }
+                current = current->left;
+            } else {
+                if (current->right == nullptr) {
+                    current->right = new Node(val);
+                    break;
+                }
+                current = current->right;
+            }
+        }
+    }
+
+    void inorder() {
+        inorder(this->root);
+    }
+
+    void inorder(Node* node) {
+        if (node == nullptr) return;
+        inorder(node->left);
+        cout << node->val << " ";
+        inorder(node->right);
+    }
+
+    void preorder() {
+        preorder(this->root);
+    }
+
+    void preorder(Node* node) {
+        if (node == nullptr) return;
+        cout << node->val << " ";
+        preorder(node->left);
+        preorder(node->right);
+    }
+
+    void postorder() {
+        postorder(this->root);
+    }
+
+    void postorder(Node* node) {
+        if (node == nullptr) return;
+        postorder(node->left);
+        postorder(node->right);
+        cout << node->val << " ";
+    }
+
+    void bfs() {
+        queue<Node*> q;
+        q.push(this->root);
+        while (!q.empty()) {
+            auto node = q.front();
+            q.pop();
+            cout << node->val << " ";
+            if (node->left != nullptr) q.push(node->left);
+            if (node->right != nullptr) q.push(node->right);
+        }
+    }
+
+    void dfs() {
+        stack<Node*> s;
+        s.push(this->root);
+        while (!s.empty()) {
+            auto node = s.top();
+            s.pop();
+            cout << node->val << " ";
+            if (node->right != nullptr) s.push(node->right);
+            if (node->left != nullptr) s.push(node->left);
+        }
+    }
+
+    void dfs_recursive() {
+        dfs_recursive(this->root);
+    }
+
+    void dfs_recursive(Node* node) {
+        if (node == nullptr) return;
+        cout << node
+    }
+};
+*/
