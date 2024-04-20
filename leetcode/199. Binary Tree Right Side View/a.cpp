@@ -12,7 +12,7 @@
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        // iterative BFS, TC & SC: O(N)
+        // iterative BFS, TC & SC: O(N) 
         vector<int> ans;
         if (!root) return ans;
         queue<TreeNode*> q;
