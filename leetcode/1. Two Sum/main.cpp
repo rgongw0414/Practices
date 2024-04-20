@@ -10,6 +10,7 @@ void solve() {
 }
 
 vector<int> twoSum(vector<int>& nums, int target) {
+    // brute force
     vector<int> ans;
     ans.reserve(2);
     int x = 0;
@@ -36,18 +37,19 @@ vector<int> twoSum(vector<int>& nums, int target) {
 }
 
 vector<int> twoSum_hash(vector<int>& nums, int target) {
-    unordered_map<int, int> numMap;
-    int n = nums.size();
-
-    for (int i = 0; i < n; i++) {
-        int complement = target - nums[i];
-        if (numMap.count(complement)) {
-            return {numMap[complement], i};
+    unordered_map<int, int> numIdxMapping; // map num to its idx in nums
+    vector<int> ans;
+    for (int i = 0; i < (int)nums.size(); i++) {
+        int n = nums[i];
+        int diff = target - n; // difference b/w n and target
+        if (numIdxMapping.find(diff) != numIdxMapping.end()) {
+            ans.push_back(i); // n has not inserted into numIdxMapping yet, so push i.
+            ans.push_back(numIdxMapping[diff]); 
+            break;
         }
-        numMap[nums[i]] = i;
+        numIdxMapping[n] = i; // insert n after searching for target, because one number can only used once.
     }
-
-    return {}; // No solution found
+    return ans;
 }
 
 int main() {
