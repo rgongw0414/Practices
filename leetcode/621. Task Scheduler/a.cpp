@@ -26,7 +26,7 @@ int leastInterval(vector<char>& tasks, int n) {
                 break;
             }
         }
-        cycleUsed++; 
+        cycleUsed++;
 
         bool done = true;
         for (int i = 0; i < 26; i++) {
