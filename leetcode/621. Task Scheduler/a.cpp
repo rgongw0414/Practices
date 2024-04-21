@@ -75,3 +75,51 @@ public:
         return time;
     }
 };
+
+
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        // brute-force: always choose the job with max count
+        vector<pair<int, int>> charCount(26, {0, 0}); // map remaining job count to its remaining cooling time
+        for (auto &t: tasks) {
+            charCount[t - 'A'].first++;
+        }
+        
+        int cycleUsed = 0;
+        while (true) {
+            cycleUsed++;
+            // sort the job, so that the job with max count is alwayas chosen
+            sort(charCount.begin(), charCount.end(), 
+                [](auto &a, auto &b) {
+                    return a.first > b.first;
+                }
+            );
+
+            for (int i = 0; i < 26; i++) {
+                // have being cooling, and the job is not done
+                if (charCount[i].first > 0 and charCount[i].second > 0) {
+                    charCount[i].second--;
+                }
+            }
+
+            for (int i = 0; i < 26; i++) {
+                if (charCount[i].second == 0 and charCount[i].first > 0) {
+                    charCount[i].first--;   
+                    charCount[i].second = n + 1;
+                    break;
+                }
+            }
+
+            bool done = true;
+            for (int i = 0; i < 26; i++) {
+                if (charCount[i].first > 0) {
+                    done = false;
+                    break;
+                }
+            }
+            if (done) break;
+        }
+        return cycleUsed;
+    }
+};
