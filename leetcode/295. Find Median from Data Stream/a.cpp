@@ -18,23 +18,24 @@ public:
             return;
         }
         if (smallerMaxHeap.size() > largerMinHeap.size()) {
-            if (smallerMaxHeap.top() > num) {
-                smallerMaxHeap.push(num);
-                largerMinHeap.push(smallerMaxHeap.top());
-                smallerMaxHeap.pop();
+            // smallerMaxHeap got more data, so we have to move one data from the minHeap, because it got less data
+            if (smallerMaxHeap.top() <= num) {
+                largerMinHeap.push(num); // num >= smallerMaxHeap.top(), so we just push num to largerMinHeap
             }
             else {
-                largerMinHeap.push(num);
+                largerMinHeap.push(smallerMaxHeap.top()); // smallerMaxHeap.top() is smaller than all the numbers in largerMinHeap
+                smallerMaxHeap.pop();
+                smallerMaxHeap.push(num);
             }
         }
         else {
-            if (num > largerMinHeap.top()) {
-                largerMinHeap.push(num);
-                smallerMaxHeap.push(largerMinHeap.top());
-                largerMinHeap.pop();
+            if (num <= largerMinHeap.top()) {
+                smallerMaxHeap.push(num);
             }
             else {
-                smallerMaxHeap.push(num);
+                smallerMaxHeap.push(largerMinHeap.top());
+                largerMinHeap.pop();
+                largerMinHeap.push(num);
             }
         }
     }
