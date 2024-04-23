@@ -44,7 +44,7 @@ public:
         // O(boardH * boardW), worst case: traverse all the board cells
         // (i, j): current char position
         // currWord: current word formed by the chars on the board while traversing
-        if (i < 0 || j < 0 || board[i][j] == '#') return;
+        if (board[i][j] == '#') return;
         int chIdx = board[i][j] - 'a';
         currNode = currNode->children[chIdx];
         if (!currNode) return; // *** where early stopping happens ***
