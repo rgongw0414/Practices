@@ -34,17 +34,17 @@ public:
         for (int i = 0; i < boardH; i++) {
             for (int j = 0; j < boardW; j++) {
                 // build trie by traversing starting from all positions on the board
-                traverseBoardFrom(i, j, boardH, boardW, board, root, ans, ""); // from (i, j), traverse all 
+                traverseBoardFrom(i, j, board, root, ans, ""); // from (i, j), traverse all 
             }
         }
         return ans;
     }
 
-    void traverseBoardFrom(int i, int j, int &boardH, int &boardW, vector<vector<char>> &board, Node* currNode, vector<string> &ans, string currWord) {
+    void traverseBoardFrom(int i, int j, vector<vector<char>> &board, Node* currNode, vector<string> &ans, string currWord) {
         // O(boardH * boardW), worst case: traverse all the board cells
         // (i, j): current char position
         // currWord: current word formed by the chars on the board while traversing
-        if (i < 0 || i >= boardH || j < 0 || j >= boardW || board[i][j] == '#') return;
+        if (i < 0 || j < 0 || board[i][j] == '#') return;
         int chIdx = board[i][j] - 'a';
         currNode = currNode->children[chIdx];
         if (!currNode) return; // *** where early stopping happens ***
@@ -55,74 +55,75 @@ public:
         }
         char ch = board[i][j];
         board[i][j] = '#';
-        traverseBoardFrom(i + 1, j, boardH, boardW, board, currNode, ans, currWord); // traverse all possible paths (DFS)
-        traverseBoardFrom(i - 1, j, boardH, boardW, board, currNode, ans, currWord);
-        traverseBoardFrom(i, j + 1, boardH, boardW, board, currNode, ans, currWord);
-        traverseBoardFrom(i, j - 1, boardH, boardW, board, currNode, ans, currWord);
+        // (int)board.size(): boardHeight, (int)board[0].size(): boardWidth
+        if (i + 1 < (int)board.size())    traverseBoardFrom(i + 1, j, board, currNode, ans, currWord); // traverse all possible paths (DFS)
+        if (i - 1 >= 0)                   traverseBoardFrom(i - 1, j, board, currNode, ans, currWord);
+        if (j + 1 < (int)board[0].size()) traverseBoardFrom(i, j + 1, board, currNode, ans, currWord);
+        if (j - 1 >= 0)                   traverseBoardFrom(i, j - 1, board, currNode, ans, currWord);
         board[i][j] = ch;
     }
 };
 
 /// TLE
-class Solution {
-private:
-    struct Node {
-        vector<Node*> children;
-        Node () : children(26, nullptr) {}
-    };
-    Node* root;
-public:
+// class Solution {
+// private:
+//     struct Node {
+//         vector<Node*> children;
+//         Node () : children(26, nullptr) {}
+//     };
+//     Node* root;
+// public:
 
-    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-        // trie, TLE caused by building trie with all possible path from each cell on the board
-        root = new Node(); // root of trie
-        auto curr = root;
-        int boardH = board.size(), boardW = board[0].size();
-        for (int i = 0; i < boardH; i++) {
-            for (int j = 0; j < boardW; j++) {
-                // build trie by traversing starting from all positions on the board
-                traverseBoardFrom(i, j, boardH, boardW, board, root); // from (i, j), traverse all 
-            }
-        }
-        bool found = false;
-        vector<string> ans;
-        for (auto &word: words) {
-            found = search(word, root);
-            if (found) ans.push_back(word);
-        }
-        return ans;
-    }
+//     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+//         // trie, TLE caused by building trie with all possible path from each cell on the board
+//         root = new Node(); // root of trie
+//         auto curr = root;
+//         int boardH = board.size(), boardW = board[0].size();
+//         for (int i = 0; i < boardH; i++) {
+//             for (int j = 0; j < boardW; j++) {
+//                 // build trie by traversing starting from all positions on the board
+//                 traverseBoardFrom(i, j, boardH, boardW, board, root); // from (i, j), traverse all 
+//             }
+//         }
+//         bool found = false;
+//         vector<string> ans;
+//         for (auto &word: words) {
+//             found = search(word, root);
+//             if (found) ans.push_back(word);
+//         }
+//         return ans;
+//     }
 
-    void traverseBoardFrom(int i, int j, int &boardH, int &boardW, vector<vector<char>> &board, Node* curr) {
-        // O(boardH * boardW), worst case: traverse all the board cells
-        // (i, j): current char position
-        if (!curr || i < 0 || i >= boardH || j < 0 || j >= boardW || board[i][j] == '#') return;
-        int chIdx = board[i][j] - 'a';
-        if (!curr->children[chIdx]) {
-            curr->children[chIdx] = new Node();
-        }
-        curr = curr->children[chIdx];
-        char ch = board[i][j];
-        board[i][j] = '#';
-        traverseBoardFrom(i + 1, j, boardH, boardW, board, curr);
-        traverseBoardFrom(i - 1, j, boardH, boardW, board, curr);
-        traverseBoardFrom(i, j + 1, boardH, boardW, board, curr);
-        traverseBoardFrom(i, j - 1, boardH, boardW, board, curr);
-        board[i][j] = ch;
-    }
+//     void traverseBoardFrom(int i, int j, int &boardH, int &boardW, vector<vector<char>> &board, Node* curr) {
+//         // O(boardH * boardW), worst case: traverse all the board cells
+//         // (i, j): current char position
+//         if (!curr || i < 0 || i >= boardH || j < 0 || j >= boardW || board[i][j] == '#') return;
+//         int chIdx = board[i][j] - 'a';
+//         if (!curr->children[chIdx]) {
+//             curr->children[chIdx] = new Node();
+//         }
+//         curr = curr->children[chIdx];
+//         char ch = board[i][j];
+//         board[i][j] = '#';
+//         traverseBoardFrom(i + 1, j, boardH, boardW, board, curr);
+//         traverseBoardFrom(i - 1, j, boardH, boardW, board, curr);
+//         traverseBoardFrom(i, j + 1, boardH, boardW, board, curr);
+//         traverseBoardFrom(i, j - 1, boardH, boardW, board, curr);
+//         board[i][j] = ch;
+//     }
 
-    bool search(string &word, Node* curr) {
-        bool found = true;
-        for (auto &ch: word) {
-            if (!curr->children[ch - 'a']) {
-                found = false;
-                break;
-            }
-            curr = curr->children[ch - 'a'];
-        }
-        return found;
-    }
-};
+//     bool search(string &word, Node* curr) {
+//         bool found = true;
+//         for (auto &ch: word) {
+//             if (!curr->children[ch - 'a']) {
+//                 found = false;
+//                 break;
+//             }
+//             curr = curr->children[ch - 'a'];
+//         }
+//         return found;
+//     }
+// };
 
 int main() {
     Solution s;
