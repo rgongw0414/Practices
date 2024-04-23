@@ -55,7 +55,7 @@ public:
         }
         char ch = board[i][j];
         board[i][j] = '#';
-        traverseBoardFrom(i + 1, j, boardH, boardW, board, currNode, ans, currWord);
+        traverseBoardFrom(i + 1, j, boardH, boardW, board, currNode, ans, currWord); // traverse all possible paths (DFS)
         traverseBoardFrom(i - 1, j, boardH, boardW, board, currNode, ans, currWord);
         traverseBoardFrom(i, j + 1, boardH, boardW, board, currNode, ans, currWord);
         traverseBoardFrom(i, j - 1, boardH, boardW, board, currNode, ans, currWord);
