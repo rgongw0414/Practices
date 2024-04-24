@@ -30,9 +30,9 @@ public:
         }
 
         vector<string> ans;
-        int boardH = board.size(), boardW = board[0].size();
-        for (int i = 0; i < boardH; i++) {
-            for (int j = 0; j < boardW; j++) {
+        size_t boardH = board.size(), boardW = board[0].size();
+        for (size_t i = 0; i < boardH; i++) {
+            for (size_t j = 0; j < boardW; j++) {
                 // build trie by traversing starting from all positions on the board
                 traverseBoardFrom(i, j, board, root, ans, ""); // from (i, j), traverse all 
             }
@@ -40,12 +40,12 @@ public:
         return ans;
     }
 
-    void traverseBoardFrom(int i, int j, vector<vector<char>> &board, Node* currNode, vector<string> &ans, string currWord) {
+    void traverseBoardFrom(size_t i, size_t j, vector<vector<char>> &board, Node* currNode, vector<string> &ans, string currWord) {
         // O(boardH * boardW), worst case: traverse all the board cells
         // (i, j): current char position
         // currWord: current word formed by the chars on the board while traversing
         if (board[i][j] == '#') return;
-        int chIdx = board[i][j] - 'a';
+        size_t chIdx = board[i][j] - 'a';
         currNode = currNode->children[chIdx];
         if (!currNode) return; // *** where early stopping happens ***
         currWord += board[i][j]; // append new char
@@ -56,10 +56,10 @@ public:
         char ch = board[i][j];
         board[i][j] = '#';
         // (int)board.size(): boardHeight, (int)board[0].size(): boardWidth
-        if (i + 1 < (int)board.size())    traverseBoardFrom(i + 1, j, board, currNode, ans, currWord); // traverse all possible paths (DFS)
-        if (i - 1 >= 0)                   traverseBoardFrom(i - 1, j, board, currNode, ans, currWord);
-        if (j + 1 < (int)board[0].size()) traverseBoardFrom(i, j + 1, board, currNode, ans, currWord);
-        if (j - 1 >= 0)                   traverseBoardFrom(i, j - 1, board, currNode, ans, currWord);
+        if ((int)i + 1 < board.size())    traverseBoardFrom(i + 1, j, board, currNode, ans, currWord); // traverse all possible paths (DFS)
+        if ((int)i - 1 >= 0)                   traverseBoardFrom(i - 1, j, board, currNode, ans, currWord);
+        if ((int)j + 1 < board[0].size()) traverseBoardFrom(i, j + 1, board, currNode, ans, currWord);
+        if ((int)j - 1 >= 0)                   traverseBoardFrom(i, j - 1, board, currNode, ans, currWord);
         board[i][j] = ch;
     }
 };
