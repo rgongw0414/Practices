@@ -82,7 +82,7 @@ int main() {
 }
 ```
 
-* A static function can't be called from outside this .cpp file
+* A **static function** can't be called from outside this .cpp file
 ```cpp
 #include <stdio.h>
 
