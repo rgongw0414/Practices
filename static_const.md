@@ -1,8 +1,10 @@
+## Scope of static variables
+* Static variables are only accessible within the scope they are declared in
+```cpp
 #include <stdio.h>
 
 void incrementAndPrint() {
     // Static variable retains its value between function calls
-    // *** Static variables are only accessible within the scope they are declared in ***
     static int count = 0;
     
     // Increment the static variable
@@ -20,11 +22,11 @@ int main() {
     
     return 0;
 }
+```
 
-//////
-
+* Within the scope, but is read-only (static const or const static)
+```cpp
 #include <stdio.h>
-
 void function() {
     // Static const variable
     static const int num = 10; // scope of num: the function block itself
@@ -49,9 +51,10 @@ int main() {
     
     return 0;
 }
+```
 
-
-//////
+* static variables can be passed to other function like normal variables (but only in the same .c/.cpp file)
+```cpp
 void otherFunction(int count) {
     // Access and use the value of count
     count = count + 100;
@@ -77,8 +80,10 @@ int main() {
     printf("Count is now: %d\n", count); // now, count: 101
     return 0;
 }
+```
 
-//////
+* A static function can't be called from outside this .cpp file
+```cpp
 #include <stdio.h>
 
 // Static function declaration
@@ -99,4 +104,13 @@ int main() {
     
     return 0;
 }
+```
+## const, static, const static, static const
+In C, `const` and `static` are both type qualifiers that can be applied to variables, but their order in the declaration does not affect their behavior. That is, `const static` and `static const` are equivalent and used in the same way.
 
+Both `const` and `static` modify the behavior of variables as follows:
+
+- `const`: Indicates that the variable's value cannot be modified after initialization. It creates a read-only variable.
+- `static`: Indicates that the variable retains its value between function calls. It has file or function scope, depending on where it's declared.
+
+So, __whether you declare a variable as `const static` or `static const`, the resulting variable will be both constant and static. The order of the qualifiers doesn't change their meaning.__ It's more a matter of personal preference or coding convention.
