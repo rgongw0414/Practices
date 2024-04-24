@@ -33,6 +33,13 @@ void function() {
     // num = 20; // Error: assignment of read-only variable 'num'
     // num is only accessible within this scope, however, it is also const, so num can not be assigned new value
     printf("The value of num: %d\n", num);
+
+    /*
+     * Both const and static modify the behavior of variables as follows:
+     *     const: Indicates that the variable's value cannot be modified after initialization. It creates a read-only variable.
+     *     static: Indicates that the variable retains its value between function calls. It has file or function scope, depending on where it's declared.
+     * So, whether you declare a variable as const static or static const, the resulting variable will be both constant and static. The order of the qualifiers doesn't change their meaning. It's more a matter of personal preference or coding convention.
+     * */
 }
 
 int main() {
