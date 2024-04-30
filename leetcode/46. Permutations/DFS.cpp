@@ -17,7 +17,8 @@ public:
         }
         for (size_t i = start; i < nums.size(); i++) {
             swap(nums[start], nums[i]); // original permutation
-            DFS(ans, nums, start + 1);  // When all permutations have been exhausted, return to the current scope and begin backtracking through other permutations.
+            DFS(ans, nums, start + 1);  // When all permutations have been exhausted, 
+            // return to the current scope and begin backtracking through other permutations.
             swap(nums[start], nums[i]); // resumes to original permutation
         }
     }
