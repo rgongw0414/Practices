@@ -16,6 +16,7 @@ public:
         }
         int permLen = nums.size(); // length of a permutation
         while (!q.empty()) {
+            // Total nodes in the tree: N + N*(N-1) + N*(N-1)*(N-2) + ... + N! = O(N!), because N! is the dominant term
             // overall TC: O(N! * N^2)
             int currQueueSize = q.size();
             while (currQueueSize--) {
