@@ -1,6 +1,55 @@
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        // *** optimized BFS with TC: O(N * N!), SC: O(N!) *** // 
+        queue<pair<
+                    vector<int>, vector<bool>
+                >> q; // queue of pairs of permtation and usedNums
+        
+        // queue initialization
+        for (size_t i = 0; i < nums.size(); i++) {
+            // first level: each number
+            auto permUsedNumsPair = make_pair(vector<int>({nums[i]}), vector<bool>(nums.size(), false));
+            permUsedNumsPair.second[i] = true; // marks as used
+            q.push(permUsedNumsPair);
+        }
+
+        int permLen = nums.size(); // length of a permutation
+        while (!q.empty()) {
+            // Total nodes in the tree: N + N*(N-1) + N*(N-1)*(N-2) + ... + N! = O(N!), because N! is the dominant term
+            int currQueueSize = q.size();
+            while (currQueueSize--) {
+                vector<int> currPerm = q.front().first;
+                vector<bool> usedNums = q.front().second; // record of the used nums in currPerm
+                q.pop();
+
+                if (currPerm.size() == permLen) {
+                    ans.push_back(currPerm);
+                    continue;
+                }
+
+                for (size_t i = 0; i < nums.size(); i++) {
+                    // this loop: O(N)
+                    if (!usedNums[i]) {
+                        // nums[i] is not in currPerm
+                        usedNums[i] = true;
+                        currPerm.push_back(nums[i]);
+                        q.push({currPerm, usedNums});
+
+                        currPerm.pop_back();
+                        usedNums[i] = false;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
         // Iterative BFS method, 
         /* idea: in each level, enumerate all permutations of vectors which with length current level as the vector length 
         * To enumerate all permutations, once stepping into next level, push a num which is not in current permutation.
@@ -17,7 +66,7 @@ public:
         int permLen = nums.size(); // length of a permutation
         while (!q.empty()) {
             // Total nodes in the tree: N + N*(N-1) + N*(N-1)*(N-2) + ... + N! = O(N!), because N! is the dominant term
-            // overall TC: O(N! * N^2)
+            // overall TC: O(N! * N^2), SC: O(N!)
             int currQueueSize = q.size();
             while (currQueueSize--) {
                 vector<int> currPerm = q.front();
