@@ -42,7 +42,7 @@ bool my_next_permutation(vector<int>& nums) {
 
 int main() {
     // Test the function with an example
-    vector<int> nums = {0, 3, 2, 1};
+    vector<int> nums = {1, 2, 2, 3};
     
     cout << "Permutations:" << endl;
     // Generate and print all permutations using the next_permutation function
