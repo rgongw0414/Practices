@@ -1,4 +1,47 @@
 class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        // Backtracking without using a trie
+        // Time: O(n x 3^l) -> n = # of cells, l = length of word
+        // Space: O(l)
+        int boardH = (int)board.size();  // size_t is unsigned long under the hood, if board.size() > INT_MAX, it will cause overflow
+        int boardW = (int)board[0].size();
+        bool found = false;
+        for (int i = 0; i < boardH; i++) {
+            for (int j = 0; j < boardW; j++) {
+                if (board[i][j] == word[0]) {
+                    // start from the first char of word
+                    found = traverseFrom(0, i, j, board, word); // start traversing from (i, j)
+                    if (found) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool traverseFrom(int idx, int i, int j, vector<vector<char>> &board, string& word) {
+        // idx: index of the char we are searching for
+        int boardH = (int)board.size();  // size_t is unsigned long under the hood, if board.size() > INT_MAX, it will cause overflow
+        int boardW = (int)board[0].size();
+        if (i < 0 || i >= boardH || j < 0 || j >= boardW || board[i][j] != word[idx]) {
+            return false;
+        }
+        if (idx == word.size() - 1) {
+            return true;
+        }
+        char chAtThisPos = board[i][j];
+        board[i][j] = '#'; // label this char as used
+        if (traverseFrom(idx + 1, i + 1, j,     board, word) ||
+            traverseFrom(idx + 1, i - 1, j,     board, word) ||
+            traverseFrom(idx + 1, i,     j + 1, board, word) ||
+            traverseFrom(idx + 1, i,     j - 1, board, word)) return true;
+        board[i][j] = chAtThisPos;
+        return false;
+    }
+};
+
+// Trie
+class Solution {
 private:
     struct Node {
         vector<Node*> children;
