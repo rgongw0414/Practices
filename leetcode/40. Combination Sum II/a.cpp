@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        // Two recursions, with TC: O(N * 2^N) and SC of O(N)
-        // NOTE: Dealing with edge cases of index is annoying, so I prefer to use unordered_map to count the number of each num, or use the one recursion method.
+        // One recursion, with TC: O(N * 2^N) and SC of O(N)
         // Idea: Sort the nums and skip the duplicates in recursions
         vector<vector<int>> ans;
         vector<int> combination;
@@ -11,8 +10,39 @@ public:
         return ans;
     }
 
+    void tryAllCombination(vector<vector<int>>& ans, vector<int>& candidates, int start, int target, vector<int>& combination) {
+        if (target == 0) {
+            // this should be checked first to handle the cases of only 1 num in candidates
+            ans.push_back(combination);
+            return;
+        }
+        if (target < 0 || start >= candidates.size()) return;
+
+        for (int i = start; i < candidates.size(); i++) { // Looping through candidates contributes to the TC of O(N) in O(N * 2^N) 
+            if (i > start && candidates[i - 1] == candidates[i]) continue; // skip the duplicates, because the duplicates have been handled by the left trees.
+            combination.push_back(candidates[i]); // choose candidates[i] 
+            tryAllCombination(ans, candidates, i + 1, target - candidates[i], combination); // go to next level of the decision tree (refer to the graph under repo)
+            combination.pop_back(); // pop candidates[i] for the right subtrees in each level
+        }
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        // Two recursions, with TC: O(N * 2^N) and SC of O(N)
+        // NOTE: Dealing with edge cases of index is annoying, so I prefer to use unordered_map to count the number of each num, or use the one recursion method.
+        // Idea: Sort the nums and skip the duplicates in recursions
+        vector<vector<int>> ans;
+        vector<int> combination;
+        sort(candidates.begin(), candidates.end()); // *** sort is very useful for skipping the duplicates *** // 
+        tryAllCombination(ans, candidates, 0, target, combination);
+        return ans;
+    }
+
     void tryAllCombination(vector<vector<int>>& ans, vector<int>& candidates, int i, int target, vector<int>& combination) {
         if (target == 0) {
+            // this should be checked first to handle the cases of only 1 num in candidates
             ans.push_back(combination);
             return;
         }
@@ -68,6 +98,7 @@ class Solution {
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         // Two recursions, with TC: O(N * 2^N) and SC of O(N)
+        // *** sort is very useful to skip the duplicates *** // 
         // Idea: Counts the number of each num (remainingCandidate);
         //       skips duplicates with sorting, then checks if current num is available with remainingCandidate.
         sort(candidates.begin(), candidates.end());

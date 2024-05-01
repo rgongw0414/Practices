@@ -34,11 +34,12 @@ public:
     }
 
     void tryAllCombination(vector<vector<int>>& ans, vector<int>& candidates, int i, int target, vector<int>& combination) {
-        if (target < 0 || i >= candidates.size()) return;
         if (target == 0) {
+            // this should be checked first to handle the cases of only 1 num in candidates
             ans.push_back(combination);
             return;
         }
+        if (target < 0 || i >= candidates.size()) return;
         combination.push_back(candidates[i]);
         tryAllCombination(ans, candidates, i, target - candidates[i], combination); // try if we can pick one more num 
         combination.pop_back();
