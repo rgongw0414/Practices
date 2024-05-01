@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        // DFS backtracking with TC: (N * 2^N), and SC: O(N)
+        // DFS backtracking with TC: (N * 2^N), and SC: O(N) (excluding the result vector, otherwise SC: O(N * 2^N))
         // Idea: All the duplicates are discuessed in each left subtree, so we can skip the duplicates in each right subtree
         // If looked into the left subtree and the right subtree of a node, we can find that the right ones must be subsets of the left ones (subsets in left subtree)
         vector<vector<int>> ans;
@@ -21,7 +21,7 @@ public:
         DFS(ans, nums, subset, idx + 1);
         
         subset.pop_back();
-        while (idx + 1 < nums.size() && nums[idx] == nums[idx + 1]) idx++;
+        while (idx + 1 < nums.size() && nums[idx] == nums[idx + 1]) idx++; // contributes O(N) to the overall TC
         DFS(ans, nums, subset, idx + 1);
     }
 };

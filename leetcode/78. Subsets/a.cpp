@@ -1,7 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        // (vector manner) decision tree with TC and SC of O(2^(N+1) - 1) = O(2^N)
+        // (vector manner) decision tree with TC and SC of O(2^(N+1) - 1) = O(2^N) (excluding the result vector, otherwise SC: O(N * 2^N))
+        // For each subset, the average length is approximately N/2, leading to a total space complexity of O(2^N * N) for storing all subsets.
         vector<vector<int>> powerSet;
         vector<int> subset;
         DFS(powerSet, subset, nums, 0);
