@@ -8,10 +8,13 @@ public:
         vector<vector<int> > subset_set(subset_num, vector<int>());
         for (int i = 0; i < elem_num; i++) {
             for (int j = 0; j < subset_num; j++) {
-                bitset<10> bits(j);  // note: bitset must initialize with const value, so set the length to 10 wrt the longest test case
+                bitset<10> bits(j);  // note: bitset must initialized with const value, so set the length to 10 wrt the longest test case
                 if (bits[i]) subset_set[j].push_back(nums[i]);
-                // if ((j >> i) & 1)  // check each bit with shifts
+                
+                // if ((j >> i) & 1)  {
+                //     // check each bit with shifts
                 //     subset_set[j].push_back (nums[i]);
+                // }
             }
         }
         return subset_set;
