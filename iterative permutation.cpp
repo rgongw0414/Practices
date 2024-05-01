@@ -42,7 +42,8 @@ bool my_next_permutation(vector<int>& nums) {
 
 int main() {
     // Test the function with an example
-    vector<int> nums = {1, 2, 2, 3};
+    // *** LIMIT: nums can't be sorted in descending order, it will be returned right after calling my_next_permutation, e.g. nums = {3, 2, 1, 0} ***
+    vector<int> nums = {1, 2, 2, 3}; 
     
     cout << "Permutations:" << endl;
     // Generate and print all permutations using the next_permutation function
