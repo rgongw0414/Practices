@@ -16,9 +16,8 @@ public:
             return;
         }
         for (int i = currIdx; i < candidates.size(); i++) {
-            int num = candidates[i];
-            combination.push_back(num);
-            tryAllCombination(ans, candidates, i, target - num, combination); // try to pick next num
+            combination.push_back(candidates[i]);
+            tryAllCombination(ans, candidates, i, target - candidates[i], combination); // try to pick next num
             combination.pop_back();
         }
     }
@@ -41,9 +40,8 @@ public:
             ans.push_back(combination);
             return;
         }
-        int num = candidates[i];
-        combination.push_back(num);
-        tryAllCombination(ans, candidates, i, target - num, combination); // try if we can pick one more num 
+        combination.push_back(candidates[i]);
+        tryAllCombination(ans, candidates, i, target - candidates[i], combination); // try if we can pick one more num 
         combination.pop_back();
         tryAllCombination(ans, candidates, i + 1, target, combination); // try to pick next num
     }
