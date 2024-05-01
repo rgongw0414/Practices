@@ -1,6 +1,39 @@
 class Solution {
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        // Two recursions, with TC: O(N * 2^N) and SC of O(N)
+        // NOTE: Dealing with edge cases of index is annoying, so I prefer to use unordered_map to count the number of each num, or use the one recursion method.
+        // Idea: Sort the nums and skip the duplicates in recursions
+        vector<vector<int>> ans;
+        vector<int> combination;
+        sort(candidates.begin(), candidates.end());
+        tryAllCombination(ans, candidates, 0, target, combination);
+        return ans;
+    }
+
+    void tryAllCombination(vector<vector<int>>& ans, vector<int>& candidates, int i, int target, vector<int>& combination) {
+        if (target == 0) {
+            ans.push_back(combination);
+            return;
+        }
+        if (target < 0 || i >= candidates.size()) return;
+
+        // left subtree recursion
+        combination.push_back(candidates[i]);
+        tryAllCombination(ans, candidates, i + 1, target - candidates[i], combination); 
+        combination.pop_back();
+
+        // Skip the duplicates, because the duplicates have been handled by the left tree, 
+        // some combinations in right subtrees will duplicate.
+        while (i + 1 < candidates.size() && candidates[i] == candidates[i + 1]) i++; 
+        tryAllCombination(ans, candidates, i + 1, target, combination); // right subtree recursion
+    }
+};
+
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         // Optimized TC: O(2^N) and SC: O(N)
         // Idea: Counts the number of each num (with remainingCandidate);
         //       then checks if there are available num in remainingCandidate.
