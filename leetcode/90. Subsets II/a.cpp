@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        // Consider each num as a binary bit, if 1, then include the num in the subset, otherwise not include the num.
         // TC: O(N * 2^N), SC: O(2^N)
         vector<vector<int>> result;
         sort(nums.begin(), nums.end()); // sort first, in order to skip the duplicates
