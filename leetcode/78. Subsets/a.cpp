@@ -1,5 +1,25 @@
 class Solution {
 public:
+    vector<vector<int> > subsets(vector<int> &nums) {
+        // Considers each num as a bit, TC and SC: O(N * N!)
+        sort(nums.begin(), nums.end());
+        auto elem_num = nums.size();
+        int subset_num = pow(2, elem_num);
+        vector<vector<int> > subset_set(subset_num, vector<int>());
+        for (int i = 0; i < elem_num; i++) {
+            for (int j = 0; j < subset_num; j++) {
+                bitset<10> bits(j);  // note: bitset must initialize with const value, so set the length to 10 wrt the longest test case
+                if (bits[i]) subset_set[j].push_back(nums[i]);
+                // if ((j >> i) & 1)  // check each bit with shifts
+                //     subset_set[j].push_back (nums[i]);
+            }
+        }
+        return subset_set;
+    }
+};
+
+class Solution {
+public:
     vector<vector<int>> subsets(vector<int>& nums) {
         // (vector manner) decision tree with TC and SC of O(2^(N+1) - 1) = O(2^N) (excluding the result vector, otherwise SC: O(N * 2^N))
         // For each subset, the average length is approximately N/2, leading to a total space complexity of O(2^N * N) for storing all subsets.
