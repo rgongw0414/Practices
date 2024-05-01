@@ -3,10 +3,9 @@ public:
     vector<vector<int> > subsets(vector<int> &nums) {
         // Considers each num as a bit, TC and SC: O(N * N!)
         sort(nums.begin(), nums.end());
-        auto elem_num = nums.size();
-        int subset_num = pow(2, elem_num);
+        int subset_num = pow(2, nums.size());
         vector<vector<int> > subset_set(subset_num, vector<int>());
-        for (int i = 0; i < elem_num; i++) {
+        for (int i = 0; i < nums.size(); i++) {
             for (int j = 0; j < subset_num; j++) {
                 bitset<10> bits(j);  // note: bitset must initialized with const value, so set the length to 10 wrt the longest test case
                 if (bits[i]) subset_set[j].push_back(nums[i]);
