@@ -1,7 +1,22 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        // SC: O(1)
+        // More readable, and SC: O(1)
+        int j = 1;
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] != nums[i - 1]){
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+};
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        // SC: O(1), but this is less readable
         // Similar to "27. Remove Element", set target val to the num pointing by j
         int val = nums[0]; // target val
         int i = 0, j = 0;
