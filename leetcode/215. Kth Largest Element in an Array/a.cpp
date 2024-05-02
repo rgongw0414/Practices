@@ -56,7 +56,10 @@ public:
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        // TC: O(N*logk), min heap
+        // TC: O(N*logk), using min heap in order to find the ans without sorting nums
+        // Idea: To find k-th largest num, use a min-heap.
+        // Insert each num one by one, once there are more than k numbers in min-heap, popped the top num (aka the min value so far),
+        // so in the end the k-th largest num will be at top of the heap.
         priority_queue<int, vector<int>, greater<int>> pq;
         for (auto const& n: nums) {
             pq.emplace(n);
