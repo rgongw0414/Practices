@@ -6,9 +6,9 @@ public:
         // Algorithm prerequisite: There must be a majority in nums.
         // No solution:     nums = [1,1,2,2,3,4]
         // Solution exists: nums = [1,1,2,2,2,3]
-        int count = 1;
-        int majority = nums[0];
-        for (int i = 1; i < nums.size(); i++) {
+        int count = 0;
+        int majority;
+        for (int i = 0; i < nums.size(); i++) {
             if (count == 0) {
                 // indicating that there are two different numbers with the same number of them before i (0 ~ i - 1)
                 majority = nums[i];  // indicating that nums[i] might be the majority
