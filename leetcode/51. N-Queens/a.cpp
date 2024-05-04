@@ -21,8 +21,7 @@ public:
             return;
         }
         for (int col = 0; col < n; col++) {
-            if (board[row][col] == 'Q' || 
-                    cols.find(col) != cols.end() || 
+            if (cols.find(col) != cols.end() || 
                     posDiag.find(row + col) != posDiag.end() || 
                     negDiag.find(row - col) != negDiag.end()) {
                 continue;
