@@ -2,11 +2,31 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         // TLE
-        // recursive quick select with TC: O(N), SC: O(logN)
+        // interative/recursive quick select with TC: O(N), SC: O(logN)
+        // TC: Average case gives O(N), 
+        //     Worst case gives O(N^2) (pivot不斷選到最大/最小的數, e.g. nums = [1,2,3,4,5])
         return quickSelect(nums, nums.size() / 2, 0, nums.size() - 1);
     }
 
     int quickSelect(vector<int>& nums, int k, int left, int right) {
+        // interative quick select
+        // find the kth smallest element in nums
+        if (left == right) return nums[left];
+        int kthSmallest = -1;
+        while (true) {
+            const int pivotIdx = partition(nums, left, right);
+            if (k == pivotIdx) {
+                kthSmallest = nums[k];
+                break;
+            }
+            else if (k < pivotIdx) right = pivotIdx - 1;
+            else if (k > pivotIdx) left = pivotIdx + 1;
+        }
+        return kthSmallest;
+    }
+
+    int quickSelect(vector<int>& nums, int k, int left, int right) {
+        // recursive quick select
         // find the kth smallest element in nums
         // Average Case: O(n)
         // 每次僅會在某半邊搜尋，比較次數: n + n/2 + n/4 + n/8 + n/16 + … <= 2n
