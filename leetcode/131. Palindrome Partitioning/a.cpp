@@ -2,8 +2,11 @@ class Solution {
 public:
     vector<vector<string>> partition(string s) {
         // Backtracking
-        // Exhausting all partitions takes O(n^2), and check if each subString is a palindrmoe takes O(n)
-        // Overall TC: O(n^3), SC: O(n) for recursion call stack and storing each partition.
+        // Exhausting all partitions takes O(2^(n-1)) = O(2^n), this is because between each pair of adjacent characters, we can choose to partition or not.
+        // Check if each subString is a palindrmoe takes O(n)
+        // For each partition, combining the substrings, resulting in a string with the same len as string s,
+        // so we got overall TC: O(n * 2^n), 
+        // and SC: O(n) for recursion call stack and storing each partition.
         vector<vector<string>> ans;
         vector<string> myPartition;
         DFS(s, 0, myPartition, ans);
@@ -24,7 +27,7 @@ public:
     }
 
     void DFS(string &s, int start, vector<string> &myPartition, vector<vector<string>> &ans) {
-        // Exhausts all partitions: O(n + (n-1)*n/2 + (n-2)*(n-1)/2 + ... + 1) = O(n * n^2) = O(n^3)
+        // Exhausting all partitions takes O(2^(n-1)) = O(2^n), this is because between each pair of adjacent characters, we can choose to partition or not.
         // Function call stack: O(n)
         if (start >= s.size()) {
             ans.push_back(myPartition);
