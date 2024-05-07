@@ -13,7 +13,7 @@ public:
 */
     void islandsAndTreasure(vector<vector<int>>& grid) {
         // Time:  O(m x n)
-        // Space: O(m x n)
+        // Space: O(m x n) 
         // BFS trick: It starts from all the chests (push them into queue), and starts traversing from them, 
         //          resulting in for each chest, it takes one step until the sea, or a land which has been vistid before is reached.
         // If a land cell cannot reach a treasure chest than the value should remain INF_MAX.
