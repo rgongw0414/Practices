@@ -1,17 +1,19 @@
-/**
- * Definition for a Node.
- * struct Node {
- *     int val;
- *     Node *left;
- *     Node *right;
- *     Node *random;
- *     Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {}
- *     Node(int x) : val(x), left(nullptr), right(nullptr), random(nullptr) {}
- *     Node(int x, Node *left, Node *right, Node *random) : val(x), left(left), right(right), random(random) {}
- * };
- */
+#include <bits/stdc++.h>
+using namespace std;
 
-class Solution {
+// Definition for a Node.
+struct Node {
+    int val;
+    Node *left;
+    Node *right;
+    Node *random;
+    Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {}
+    Node(int x) : val(x), left(nullptr), right(nullptr), random(nullptr) {}
+    Node(int x, Node *left, Node *right, Node *random) : val(x), left(left), right(right), random(random) {}
+};
+
+
+class Solution2 {
 private:
     unordered_map<Node *, Node *> origToCloneMap;
 
@@ -36,7 +38,7 @@ public:
     } 
 };
 
-class Solution {
+class Solution1 {
 public:
     Node* copyRandomBinaryTree(Node* root) {
         // iterative DFS with TC & SC: O(N)
@@ -76,3 +78,33 @@ public:
         return origToCloneMap[root];
     }
 };
+
+void printTree(Node *root) {
+    if (!root) return;
+    cout << "Node: " << root->val << ", ";
+    if (root->left) cout << "Left: " << root->left->val << ", ";
+    if (root->right) cout << "Right: " << root->right->val << ", ";
+    if (root->random) cout << "Random: " << root->random->val << endl;
+    printTree(root->left);
+    printTree(root->right);
+}
+
+int main() {
+    Solution1 s1;
+    Solution2 s2;
+    Node *root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->random = root->right;
+    root->left->random = root;
+    root->right->random = root->left;
+    Node *newRoot1 = s1.copyRandomBinaryTree(root);
+    Node *newRoot2 = s2.copyRandomBinaryTree(root);
+    // Print the resulting trees
+    cout << "Resulting tree using Solution1:" << endl;
+    printTree(newRoot1);
+
+    cout << "Resulting tree using Solution2:" << endl;
+    printTree(newRoot2);
+    return 0;
+}
