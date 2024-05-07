@@ -42,7 +42,7 @@ public:
                 }
                 grid[iStepped][jStepped] = grid[i][j] + 1;
                 q.push({iStepped, jStepped});
-            }
+            } 
         }
     }
 }; 
