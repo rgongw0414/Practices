@@ -4,7 +4,7 @@ private:
 
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        // Recursive DFS, less readable than BFS
+        // Recursive DFS (less readable than BFS for this problem)
         // In each cell, record the min time needed to rotten this orange (aka the shortest path from a rotten orange to a fresh orange),
         // so the max time is the required time to rotten all oranges.
         for (int i = 0; i < grid.size(); i++) {
