@@ -5,6 +5,7 @@ private:
 
 public:
     void solve(vector<vector<char>>& board) {
+        // Tricky!!!
         // DFS starts from edge cells
         // Idea: A region can not be captured is the one that can be reached from 'O' cells in edge, 
         //      so starts from edge cells, and mark each reachable cell 'E', we can know all regions can't be captured.
