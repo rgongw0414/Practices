@@ -34,8 +34,12 @@ private:
     // outputted -> course added to result (the head is the first course should be taken)
     // visiting -> course not added to result, but added to cycle
     // unvisited -> course not added to result or visiting
-    bool dfs(int course, unordered_map<int, vector<int>>& m, unordered_set<int>& outputted,
-        unordered_set<int>& visiting, vector<int>& result) {
+    bool dfs(
+            int course, 
+            unordered_map<int, vector<int>>& m, 
+            unordered_set<int>& outputted,
+            unordered_set<int>& visiting, 
+            vector<int>& result) {
         
         if (visiting.find(course) != visiting.end()) {
             return false;
