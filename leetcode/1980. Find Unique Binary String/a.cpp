@@ -8,7 +8,7 @@ public:
         1."00"-> 2."1O" -> 3."11" we generated 3 elements (n = 2) so atleast one element will be unique!!
 
         ***  Only works when nums.size() == n ***
-        
+
         */
         unordered_set<string> str_set(nums.begin(), nums.end());
         const int n = nums.size();
@@ -42,11 +42,11 @@ public:
             if (str_set.find(str) == str_set.end()) ans = str;
             return;
         }
-        if (!ans.empty()) return;
+        if (!ans.empty()) return; // stop the recursion if we found the answer
         str.push_back('0');
         dfs(str, ans, str_set);
         str.pop_back();
-        if (!ans.empty()) return;
+        if (!ans.empty()) return; // stop the recursion if we found the answer
         str.push_back('1');
         dfs(str, ans, str_set);
         str.pop_back();
