@@ -1,6 +1,25 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
+        // 1-d dp, TC = O(n^2)
+        int max_len = 0;
+        vector<int> LIS(nums.size(), 1); // LIS[i]: The len of the LIS ends at i
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                // see if curr LIS starting at nums[j] can be longer, when nums[i] is included
+                if (nums[j] < nums[i]) {
+                    LIS[i] = max(LIS[i], 1 + LIS[j]); // see if nums[i] can build a longer LIS with the LIS starting at nums[j]
+                }
+            }
+        }
+        return (int)*max_element(LIS.begin(), LIS.end());
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
         // DFS to enumerate all subsequence, where each seq consists of num chosen from nums
         // num is either chosen or not chosen, hence, TC = O(2^n)
         int max_len = 0;
