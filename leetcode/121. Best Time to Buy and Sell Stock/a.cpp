@@ -1,6 +1,25 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
+        // More readable: TC=O(N), SC=O(1)
+        // Calculate profit at each time with history low price and max profit.
+        int n = prices.size();
+        if (n == 0) return 0; 
+        int minPrice = prices[0]; // min price so far
+        int maxProfit = 0;
+        for (int i = 1; i < n; i++) {
+            maxProfit = max(maxProfit, prices[i] - minPrice);
+                    
+            minPrice = min(minPrice, prices[i]);
+        }
+        
+        return maxProfit;
+    }
+};
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
         // two pointers: TC=O(N), SC=O(1)
         int l = 0, r = 1;
         int ans = 0;
