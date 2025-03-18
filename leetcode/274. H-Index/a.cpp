@@ -1,6 +1,32 @@
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
+        // Bucket Sort
+        // TC=O(N), SC=O(N)
+        int n = citations.size();
+        vector<int> citationBuckets(n + 1, 0);
+
+        for (int citation : citations) {
+            citationBuckets[min(citation, n)]++; // h-index at most equals to n
+        }
+
+        int cumulation = 0; // cumulate the number of papers that satisfy the h-index requirement at each iteration
+        for (int hIndex = n; hIndex >= 0; hIndex--) {
+            // Start from n to 0, so that all the citation nums can be cumulated correctively for different h-index
+            // e.g., for h-index of 2, all papers having more than 2 citations must be cumulated
+            // if start from 0 to n, there will be papers cumulated into the check of higher h-index
+            cumulation += citationBuckets[hIndex]; 
+            if (cumulation >= hIndex) {
+                return hIndex;
+            }
+        }
+        return 0;        
+    }
+};
+
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
         // TC=O(nlogn), SC=O(1)
         sort(citations.begin(), citations.end()); // sort the nums in ascending order
         int n = citations.size();
