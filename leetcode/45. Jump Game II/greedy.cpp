@@ -1,3 +1,34 @@
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        // TC: O(N), SC: O(1)
+        int steps = 0, l = 0, r = 0;
+        // [l,r]: The interval of positions currently reachable, for any positions in this interval, we can jump there with just one step
+        while (r < nums.size() - 1) {
+            int farthest = 0; // Jump from current interval [l,r], the farthest reachable position 
+            for (int i = l; i <= r; i++) {
+                farthest = max(farthest, i + nums[i]);
+            }
+            // update to next interval
+            l = r + 1;
+            r = farthest;
+            steps++; // for any positions in this new interval, it only takes one step to jump there
+        }
+        return steps;
+    }
+};
+/*
+nums = [2,3,1,1,4]
+l,r  f
+[2,3,1,1,4]
+->
+    l r   f
+[2,3,1,1,4]
+->
+        l   r
+[2,3,1,1,4]
+*/
+
 /*
     Given int array, determine min jumps to reach last index
     Ex. nums = [2,3,1,1,4] -> 2, index 0 to 1 to last
@@ -7,7 +38,6 @@
     Time: O(n)
     Space: O(1)
 */
-
 class Solution {
 public:
     int jump(vector<int>& nums) {
@@ -37,3 +67,4 @@ public:
         return result;
     }
 };
+

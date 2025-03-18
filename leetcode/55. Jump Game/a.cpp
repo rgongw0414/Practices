@@ -15,19 +15,22 @@ public:
     }
 };
 
-
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        // greedy with TC of O(N), note that using size_t as index type in for loop will cause overflowing.
-        // dynamically updates goal position, pushing it from tail to head
-        int goal = nums.size() - 1;
-        for (int curr_pos = nums.size() - 1; curr_pos >= 0; curr_pos--) {
-            // size_t will cause curr_pos overflow to UINT_MAX in the last iteration of for loop (last iter: 0 - 1 = UINT_MAX)
-            if (curr_pos + nums[curr_pos] >= goal) goal = curr_pos;
+        int target = nums.size() - 1; // target position
+        bool ans; // can jump to target
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (i + nums[i] >= target) {
+                // it is possible to jump from i to target
+                target = i;
+                ans = true;
+            }
+            else {
+                ans = false;
+            }
         }
-        bool reachable = (goal == 0);
-        return reachable;
+        return ans;
     }
 };
 
