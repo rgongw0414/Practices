@@ -15,6 +15,7 @@ public:
             }
         }
         // Second pass: Makes sure candies[i] is larger than the right child candies[i+1]
+        // Why not do it from left to right? Because the updated candies[i] is not taking into consideration in the next iteration.
         for (int i = n - 2; i >= 0; --i) {
             if (ratings[i] > ratings[i + 1]) {
                 // The maximum between its candies[i] and one more than the right neighbor's candies. 
