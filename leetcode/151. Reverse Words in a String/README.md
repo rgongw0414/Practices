@@ -39,3 +39,5 @@ Finally, it resizes the string to remove any extra space.
 ` s.resize(right-1);`
 
 ![alt text](image-7.png)
+
+* [Reference](https://leetcode.com/problems/reverse-words-in-a-string/solutions/4884894/best-explanation-with-photos-without-extra-space-beats-100-in-time-95-in-space/?envType=study-plan-v2&envId=top-interview-150)
