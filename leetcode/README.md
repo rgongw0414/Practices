@@ -78,6 +78,7 @@
 - Evaluate Reverse Polish Notation (150) - Stack
 - Largest Rectangle in Histogram (84) - Monotonic Stack
 - Daily Temperatures (739) - Monotonic Stack
+- Simplify Path (71) - Stack
 
 ## **9. Greedy**
 - Gas Station (134) - Greedy
