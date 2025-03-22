@@ -95,6 +95,7 @@
 - Word Pattern (290) - HashMap
 - Permutation in String (567) - Sliding Window, HashMap
 - Minimum Window Substring (76) - Sliding Window, HashMap
+- Isomorphic Strings (205) - HashMap, Bijection
 
 ## **11. Trie (Prefix Tree)**
 - Implement Trie (208) - Trie
@@ -109,4 +110,5 @@
 - Insert Delete GetRandom O(1) (380) - HashMap, Randomized Set
 - Design Twitter (355) - Heap, HashMap
 - Rotting Oranges (994) - BFS, Grid Traversal
+- Happy Number (202) - HashMap, Floyd’s Cycle Detection
 
