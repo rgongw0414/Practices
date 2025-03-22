@@ -28,7 +28,7 @@ public:
             d1 = Dist(3, 2), d2 = Dist(2, 4), d3 = Dist(4, 2)
             oneStep total travel dist (oneTotal) = d1 + d2
             twoStep total travel dist (twoTotal)= d1 + (d2 + d3) + d2
-            also, we knwo that: twoTotal = 2*oneTotal
+            also, we know that: twoTotal = 2*oneTotal
             hence we can infer that: d1 + (d2 + d3) + d2 = 2 * (d1 + d2)
             so final we got: d1 = d3, which indicating the dist b/w head and entry equals to the dist b/w meet point and entry.
             finally utilizing this property, once the loop is found with these two ptrs, we can just set one of them back to head, 
