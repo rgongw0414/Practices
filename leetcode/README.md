@@ -12,6 +12,8 @@
 - Remove Duplicates from Sorted Array II (80) - Two Pointers
 - Sliding Window Maximum (239) - Deque, Sliding Window
 - Minimum Size Subarray Sum (209) - Sliding Window, Two Pointers
+- Contains Duplicate (217) - HashMap
+- Contains Duplicate II (219) - HashMap, Sliding Window
 
 ## **2. Linked List**
 - Add Two Numbers (2) - Linked List, Simulation
