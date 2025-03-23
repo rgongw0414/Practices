@@ -1,0 +1,55 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+
+ left = 1, right = 4
+ c
+ 1->2->3->4->5
+ l        r
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode dummy(0); // helps the cases of left == 1 or only one node in the list
+        dummy.next = head; // if left == 1, the list head will be replaced with right, while head is still pointing to left
+        // 1. Iterate to left
+        ListNode* prev = &dummy;
+        ListNode* curr = head;
+        int cnt = 1;
+        while (cnt != left) {
+            prev = curr;
+            curr = curr->next;
+            cnt++;
+        }
+        // Now: cnt == left
+        //   prev     curr
+        // left_prev  left
+        ListNode* sublist_tail = curr;
+        ListNode* left_prev = prev;
+
+        // 2. Reverse the sublist
+        prev = nullptr;
+        while (cnt != right + 1) {
+            ListNode* tmp_next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = tmp_next;
+            cnt++;
+        }
+        // Now: cnt == right + 1
+        //   prev    curr
+        //   right     5
+        ListNode* sublist_head = prev;
+
+        // 3. Connect sublist_tail (left_prev) and sublist_head (right) with the reversed sublist
+        left_prev->next = sublist_head;
+        sublist_tail->next = curr;
+        return dummy.next;
+    }
+};
