@@ -8,10 +8,10 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
 
- left = 1, right = 4
+ left = 1, right = 4, head: 1
  c
- 1->2->3->4->5
- l        r
+ 1->2->3->4->5   ->  4->3->2->1->5
+ l        r                   h
  */
 class Solution {
 public:
@@ -21,13 +21,11 @@ public:
         // 1. Iterate to left
         ListNode* prev = &dummy;
         ListNode* curr = head;
-        int cnt = 1;
-        while (cnt != left) {
+        for (int i = 0; i < left - 1; ++i) { // iterate (left - 1) nodes to get to left
             prev = curr;
             curr = curr->next;
-            cnt++;
         }
-        // Now: cnt == left
+        // Now: 
         //   prev     curr
         // left_prev  left
         ListNode* sublist_tail = curr;
@@ -35,14 +33,13 @@ public:
 
         // 2. Reverse the sublist
         prev = nullptr;
-        while (cnt != right + 1) {
+        for (int i = 0; i < right - left + 1; ++i) { // iterate (right - left + 1) nodes to reverse the sublist
             ListNode* tmp_next = curr->next;
             curr->next = prev;
             prev = curr;
             curr = tmp_next;
-            cnt++;
         }
-        // Now: cnt == right + 1
+        // Now: 
         //   prev    curr
         //   right     5
         ListNode* sublist_head = prev;
@@ -53,3 +50,4 @@ public:
         return dummy.next;
     }
 };
+    
