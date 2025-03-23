@@ -71,7 +71,7 @@ public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         ListNode dummy(0); // helps the cases of left == 1 or only one node in the list
         dummy.next = head; // if left == 1, the list head will be replaced with right, while head is still pointing to left
-        // 1. Iterate to left
+        // 1. Iterate to right to record left_prev and right_next
         ListNode* prev = &dummy;
         ListNode* curr = head;
         ListNode* left_prev = nullptr, *right_next = nullptr;
