@@ -17,9 +17,9 @@ public:
         return is_sym(root->left, root->right);
     }
     bool is_sym(TreeNode* left, TreeNode* right) {
-        if (!left && !right) return true;
-        if (!left || !right) return false;
-        if (left->val != right->val) return false;
-        return is_sym(left->left, right->right) && is_sym(left->right, right->left);
+        if (!left && !right) return true;  // both are null
+        if (!left || !right) return false; // one of them is null
+        if (left->val != right->val) return false; 
+        return is_sym(left->left, right->right) && is_sym(left->right, right->left); // check the children
     }
 };
