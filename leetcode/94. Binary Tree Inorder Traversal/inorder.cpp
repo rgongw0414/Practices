@@ -11,13 +11,16 @@
  */
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal(TreeNode* root) { // inorder: LVR
         // Morris Traversal
         // TC: O(n), SC: O(1)
         // Intuition: 
-        // * Instead of using a stack to simulate the recursive call, we can use the Morris Traversal to achieve O(1) space complexity.
-        // * We simulate the LVR recursions by pointing the right child of the rightmost node of the curr->left subtree to curr (from the L to the V in LVR).
+        // Instead of using a stack to simulate the recursive call, we can use the Morris Traversal to achieve O(1) space complexity.
+        // We simulate the LVR recursions by pointing the right child of the rightmost node of the curr->left subtree to curr (from the L to the V in LVR).
         //   * I.e., rightmost->right = curr, we can go back to V when we finish the L part.
+        // The parent of node the subtree is curr
+        // By curr = curr->right; we either arrive at subtree root's right child (R) or subtree root (curr, V) itself.
+        // By curr = curr->left; we arrive at the left subtree if curr (L)
         // Steps:
         // 1. Initialize curr as root
         // 2. While curr is not NULL
