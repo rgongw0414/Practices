@@ -36,6 +36,7 @@
 - Invert Binary Tree (226) - BFS, DFS
 - Subtree of Another Tree (572) - DFS, Recursion
 - Diameter of Binary Tree (543) - DFS, Tree Traversal
+- Binary Tree Inorder Traversal (94) - Inorder Traversal, DFS, Morris Traversal: SC=O(1), Threaded Tree
 - Construct Binary Tree from Preorder and Inorder Traversal (105) - DFS, HashMap
 - Binary Tree Right Side View (199) - BFS, DFS
 - Count Good Nodes in Binary Tree (1448) - DFS
