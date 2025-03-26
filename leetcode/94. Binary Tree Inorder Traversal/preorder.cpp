@@ -15,6 +15,8 @@ class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         // Preorder: VLR
+        // Morris Traversal
+        // TC: O(n), SC: O(1)
         // The parent of node the subtree is curr
         // By curr = curr->right; we either arrive at subtree root's right child (R) or subtree root (curr, V) itself.
         // By curr = curr->left; we arrive at the left subtree if curr (L)
