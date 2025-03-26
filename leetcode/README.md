@@ -40,6 +40,8 @@
 - Construct Binary Tree from Preorder and Inorder Traversal (105) - DFS, HashMap
 - Binary Tree Right Side View (199) - BFS, DFS
 - Count Good Nodes in Binary Tree (1448) - DFS
+- Populating Next Right Pointers in Each Node (116) - BFS (Level-Order-Traversal) with SC=O(1), Perfect Binary Tree
+- Populating Next Right Pointers in Each Node II (117) - BFS (Level-Order-Traversal) with SC=O(1)
 
 ## **4. Graph & BFS/DFS**
 - Clone Graph (133) - BFS, DFS
