@@ -12,7 +12,7 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        // recursion, TC: O(N), SC: O(N);
+        // recursion, TC: O(N^2), SC: O(N);
         // SC is O(N) in the worst case of skewed tree
         /*
         preorder (VLR) = [3,9,20,15,7], inorder (LVR) = [9,3,15,20,7]
@@ -54,6 +54,47 @@ public:
         root->right = create(preorder, inorder, 
                             preStart + leftSize + 1, preStart + leftSize + rightSize, 
                             rootInorderIdx + 1, rootInorderIdx + rightSize);
+        return root;
+    }
+};
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        // Cleaner version
+        // TC: O(N^2), SC: O(N)
+        // Idea: root is the first one of preorder, and we can divide the tree into left/right subtree with inorder.
+        //       By inorder, we know the size of left subtree and right subtree, so we can find the root of left subtree in preorder.
+        //       Considering inorder: {[9],3,[15,20,7]}, [9] is the left subtree, and [15,20,7] is the right subtree.
+        //       In preorder: {[3],[9], [20,15,7]}, 3 is the curr and [9,20,15,7] is its children
+        //                     9: root of left subtree, 20: root of right subtree, so we can find the root of right subtree in preorder.
+
+        if (preorder.empty() || inorder.empty()) {
+            return nullptr;
+        }
+
+        TreeNode* root = new TreeNode(preorder[0]);
+        // Note that the range std::find searches is [first, last)
+        auto root_in_idx = find(inorder.begin(), inorder.end(), preorder[0]) - inorder.begin();
+        // Constructs vectors with the contents of the range [first, last)
+        vector<int> leftPre(preorder.begin() + 1, preorder.begin() + 1 + root_in_idx); // preorder[1:root_inIdx]
+        vector<int> rightPre(preorder.begin() + root_in_idx + 1, preorder.end());      // preorder[root_inIdx+1:]
+        vector<int> leftIn(inorder.begin(), inorder.begin() + root_in_idx);            // inorder[:root_inIdx]
+        vector<int> rightIn(inorder.begin() + root_in_idx + 1, inorder.end());         // inorder[root_inIdx+1:]
+        root->left = buildTree(leftPre, leftIn);
+        root->right = buildTree(rightPre, rightIn);
         return root;
     }
 };
