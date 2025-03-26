@@ -21,7 +21,7 @@
                                                         6                                5
                                                                                           \ c
                                                                                            6
-          
+* Ref: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solutions/1067000/c-both-recursive-iterative-solution        
 */
 class Solution {
 public:
