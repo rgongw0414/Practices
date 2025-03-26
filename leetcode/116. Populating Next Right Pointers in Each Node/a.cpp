@@ -14,21 +14,64 @@ public:
     Node(int _val, Node* _left, Node* _right, Node* _next)
         : val(_val), left(_left), right(_right), next(_next) {}
 };
+*/
 
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        // Optimized Iterative BFS (Top-down), or Level-order traversal
+        // TC = O(N), N is the number of nodes in the tree
+        // SC = O(1), no extra space is used
+        if (!root) return nullptr;
+        Node* cur_lv = root; // For traversing the current level from left to right
+        Node* nxt_lv_start = root->left; // The leftmost node of the next level
+        while (cur_lv && nxt_lv_start) {
+            cur_lv->left->next = cur_lv->right;
+            if (cur_lv->next) { // The current node is not the end of this level
+                cur_lv->right->next = cur_lv->next->left;
+            }
+
+            cur_lv = cur_lv->next; // Move to the next node in the current level
+            if (!cur_lv) { // Reached the end of the current level, so go to the next level
+                cur_lv = nxt_lv_start;
+                nxt_lv_start = cur_lv->left;
+            }
+        }
+        return root;
+    }
+};
+
+/*
      d->1->N
        / \
    d->2   3
      / \   \
  d->4   5   7
 */
-
 class Solution {
 public:
     Node* connect(Node* root) {
         // Iterative BFS (Top-down), or Level-order traversal
         // TC = O(N), N is the number of nodes in the tree
         // SC = O(1), no extra space is used
-        // Ref: https://leetcode.com/problems/populating-next-right-pointers-in-each-node/solutions/1654181/c-python-java-simple-solution-w-images-explanation-bfs-dfs-o-1-optimized-bfs
         if (root == nullptr) return nullptr;
         Node* level_start = root; // The leftmost node of the current level: l
         while (level_start) {
