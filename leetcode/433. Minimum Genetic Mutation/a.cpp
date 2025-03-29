@@ -1,12 +1,18 @@
+/*
+Worst case: Complete graph, where |E| = |V|*(|V| - 1) / 2, where |E|= number of edges, |V| = number of vertices
+    |E| = O(N^2), where N = wordList.size()
+    |V| = O(N)
+    TC = O(M * N^2), where M = wordList[i].size() */
 class Solution {
 public:
     int minMutation(string startGene, string endGene, vector<string>& bank) {
         // BFS
-        // TC: O(M^2 * N)
-        //     N: bank.size(), 
-        //     M: gene.size() == 8,
+        // The neighbor of a word is created when traversing the word by changing one letter at a time.
+        // TC: O(M * N^2)
+        //     N: wordList.size(),
+        //     M: wordList[i].size()
         //     4: number of possible mutations (A, C, G, T)
-        // SC: O(M^2 * N)
+        // SC: O(N)
         unordered_set<string> bank_set(bank.begin(), bank.end());
         if (startGene == endGene) return 0; // no mutation needed
         if (!bank_set.count(endGene)) return -1; // end gene not in bank
@@ -25,8 +31,8 @@ public:
                         if (ch == gene[i]) continue; // skip if the mutation character is the same as the original
                         string mutation = gene;
                         mutation[i] = ch;
-                        if (visited.count(mutation) || !bank_set.count(mutation)) continue; // each find() is O(8*N)
-                        if (mutation == endGene) return mut_num + 1; // found the end gene
+                        if (visited.count(mutation) || !bank_set.count(mutation)) continue; 
+                        if (mutation == endGene) return mut_num + 1; 
                         q.push(mutation);
                         visited.insert(mutation);
                     }
