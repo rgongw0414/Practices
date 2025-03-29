@@ -10,30 +10,30 @@ private:
 
 public:
     int snakesAndLadders(vector<vector<int>>& board) {
+        // TC: O(n^2)
+        // SC: O(n^2)
+        // BFS
         int n = board.size();
-        queue<pair<int, int>> q; // map the square label to the number of move it takes
+        queue<int> q; // map the square label to the number of move it takes
         unordered_set<int> visited;
-        q.push({1, 0});
+        q.push(1);
+        int moves = 0;
         while (!q.empty()) {
-            auto [curr, moves] = q.front();
-            q.pop();
-            for (int i = 1; i <= 6; i++) {
-                int next = curr + i;
-                auto [row, col] = intToPos(next, n);
-                if (board[row][col] != -1) {
-                    next = board[row][col];
+            int level_size = q.size();
+            while (level_size--) {
+                int curr = q.front();
+                q.pop();
+                for (int i = 1; i <= 6; i++) {
+                    int next = curr + i;
+                    auto [row, col] = intToPos(next, n);
+                    if (board[row][col] != -1) next = board[row][col];
+                    if (visited.count(next)) continue;
+                    if (next == n * n) return moves + 1;
+                    q.push(next);
+                    visited.insert(next);
                 }
-
-                /* Note that we don't need to check if mut_num + 1 is minimum
-                * because we are using BFS, which guarantees that the first time we reach
-                * the end square, it is the minimum number of moves needed. */
-                if (next == n * n) {
-                    return moves + 1;
-                }
-                if (visited.count(next)) continue;
-                q.push({next, moves + 1});
-                visited.insert(next);
             }
+            moves++;
         }
         return -1;
     }
