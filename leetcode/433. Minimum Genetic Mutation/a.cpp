@@ -22,6 +22,10 @@ public:
                     string mutation = gene;
                     mutation[i] = ch;
                     if (visited.count(mutation) || find(bank.begin(), bank.end(), mutation) == bank.end()) continue; // each find() is O(8*N)
+                    
+                    /* Note that we don't need to check if mut_num + 1 is minimum
+                     * because we are using BFS, which guarantees that the first time we reach
+                     * the end gene, it is the minimum number of mutations needed. */
                     if (mutation == endGene) return mut_num + 1; // found the end gene
                     q.push({mutation, mut_num + 1});
                     visited.insert(mutation);

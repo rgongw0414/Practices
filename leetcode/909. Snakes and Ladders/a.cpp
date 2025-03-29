@@ -23,6 +23,10 @@ public:
                 if (board[row][col] != -1) {
                     next = board[row][col];
                 }
+
+                /* Note that we don't need to check if mut_num + 1 is minimum
+                * because we are using BFS, which guarantees that the first time we reach
+                * the end square, it is the minimum number of moves needed. */
                 if (next == n * n) {
                     return moves + 1;
                 }
