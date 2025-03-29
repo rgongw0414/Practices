@@ -53,7 +53,7 @@
 - Course Schedule II (210) - Topological Sort, BFS, DFS
 - Word Search (79) - DFS, Backtracking
 - Redundant Connection (684) - Union-Find
-- Walls and Gates (286) - BFS (TODO Recursive DFS)
+- Walls and Gates (286) - BFS (TODO: Recursive DFS)
 
 ## **5. Heap & Priority Queue**
 - Kth Largest Element in an Array (215) - Heap, Quickselect
