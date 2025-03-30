@@ -27,7 +27,7 @@ public:
             col_occupied[col] = true;
             pos_diag_occupied[row+col] = true;
             neg_diag_occupied[row-col+n] = true;
-            DFS(row + 1, sol_num, n);
+            DFS(row + 1, sol_num, n); // row + 1 for not visiting the same row again
             col_occupied[col] = false;
             pos_diag_occupied[row+col] = false;
             neg_diag_occupied[row-col+n] = false;
@@ -60,7 +60,7 @@ public:
             col_occupied.insert(col);
             pos_diag_occupied.insert(row+col);
             neg_diag_occupied.insert(row-col);
-            DFS(row + 1, sol_num, n);
+            DFS(row + 1, sol_num, n); // row + 1 for not visiting the same row again
             col_occupied.erase(col);
             pos_diag_occupied.erase(row+col);
             neg_diag_occupied.erase(row-col);
