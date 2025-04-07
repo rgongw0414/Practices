@@ -90,6 +90,8 @@
 - Candy (135) - Greedy
 - Task Scheduler (621) - Greedy, Heap
 - Car Fleet (853) - Greedy, Sorting
+- Maximum Subarray (53) - Kadane's Algorithm, Greedy, Two Pointers, Subarray Sum
+- Maximum Sum Circular Subarray (918) - Kadane's Algorithm variation, Greedy, Two Pointers, Circular Subarray Sum
 
 ## **10. String Manipulation**
 - Longest Substring Without Repeating Characters (3) - Sliding Window
