@@ -46,6 +46,23 @@ public:
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
+        // Kadane's algorithm, TC: O(N)
+        // Idea: Greedily include the current number, or start a new subarray from the current number
+        // Ref: https://neetcode.io/courses/advanced-algorithms/0
+        int ansMax = nums[0];
+        int currSum = 0;
+        for (size_t i = 0; i < nums.size(); i++) {
+            currSum += nums[i];
+            ansMax = max(ansMax, currSum);
+            currSum = max(currSum, nums[i]); // include the current number, or start a new subarray from the current number
+        }
+        return ansMax;
+    }
+};
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
         // brute-force: O(n^2)
         int ansMax = INT_MIN;
         for (size_t i = 0; i < nums.size(); i++) {
