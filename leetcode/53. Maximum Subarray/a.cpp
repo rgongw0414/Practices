@@ -52,9 +52,9 @@ public:
         int ansMax = nums[0];
         int currSum = 0;
         for (size_t i = 0; i < nums.size(); i++) {
-            currSum += nums[i];
+            // include the current number, or start a new subarray from the current number
+            currSum = max(currSum + nums[i], nums[i]); // if currSum + nums[i] is negative, start a new subarray from nums[i]
             ansMax = max(ansMax, currSum);
-            currSum = max(currSum, nums[i]); // include the current number, or start a new subarray from the current number
         }
         return ansMax;
     }
