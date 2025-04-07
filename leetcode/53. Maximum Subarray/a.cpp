@@ -22,7 +22,7 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
         // Kadane's algorithm, TC: O(N)
-        // idea: for subarray (3 to 7), sum(3 to 7) = sum(0 to 7) - sum(0 to 2)
+        // Idea:
         // 1. Why discard the negative sum?
         // Because negative sum does not contribute to the answer,
         // more specifically, if we keep this negative sum, we will have to find "some numbers" to COMPENSATE the negative sum to positive,
@@ -30,7 +30,7 @@ public:
         // 2. Why we not reset currSum to 0 when negative number is encountered?
         // Because the positive numbers' contribution to the sum is still greater than the currently included negative numbers' contribution,
         // where this statement stays true until the sum becomes negative.
-        int ansMax = INT_MIN;
+        int ansMax = nums[0];
         int currSum = 0;
         for (size_t i = 0; i < nums.size(); i++) {
             currSum += nums[i];
