@@ -30,6 +30,7 @@ public:
         // 2. Why we not reset currSum to 0 when negative number is encountered?
         // Because the positive numbers' contribution to the sum is still greater than the currently included negative numbers' contribution,
         // where this statement stays true until the sum becomes negative.
+        // Ref: https://neetcode.io/courses/advanced-algorithms/0
         int ansMax = nums[0];
         int currSum = 0;
         for (size_t i = 0; i < nums.size(); i++) {
