@@ -32,3 +32,23 @@ public:
         return dp[n - 1];
     }
 };
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        // Recursive Top-down DP
+        // TC=O(2^n), SC=O(n) 
+        int n = nums.size();
+        if (n == 1) return nums[0];
+        vector<int> dp(n + 1, 0); // dp[i]: max money by robbing house-0 to (including) house-i
+        return dfs(nums, n - 1);
+    }
+
+    int dfs(vector<int>& nums, int i) {
+        if (i < 0) return 0;
+        if (i == 0) return nums[0];
+        if (i == 1) return max(nums[0], nums[1]);
+        return max(dfs(nums, i - 1), 
+                    dfs(nums, i - 2) + nums[i]);
+    }
+};
