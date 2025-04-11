@@ -23,6 +23,7 @@
         "regex": "cpp",
         "bitset": "cpp",
         "algorithm": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "utility": "cpp"
     }
 }
