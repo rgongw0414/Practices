@@ -38,7 +38,7 @@ public:
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
-        // Bottom-up 2-d DP
+        // Bottom-up 1-d DP
         // TC: O(m*n)
         // SC: O(n)
         int ROWS = grid.size(), COLS = grid[0].size();
