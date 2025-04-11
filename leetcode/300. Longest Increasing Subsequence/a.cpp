@@ -1,19 +1,25 @@
+/*
+        j i ->   dp[1] = 2
+nums = [2,5,3,7]
+        j   i    dp[2] = max(dp[2], dp[0] + 1) = 2
+            j i  dp[3] = 2
+nums = [2,5,3,7]
+        j     i
+*/
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        // 1-d dp, TC = O(n^2)
-        int max_len = 0;
-        vector<int> LIS(nums.size(), 1); // LIS[i]: The len of the LIS ends at i
+        // 1-d dp, TC = O(n^2), SC = O(n)
         int n = nums.size();
-        for (int i = 0; i < n; i++) {
-            for (int j = i - 1; j >= 0; j--) {
-                // see if curr LIS starting at nums[j] can be longer, when nums[i] is included
+        vector<int> dp(n, 1); // dp[i]: The len of the LIS ends at i
+        for (int i = 0 ; i < n; i++) {
+            for (int j = i - 1 ; j >= 0; j--) {
                 if (nums[j] < nums[i]) {
-                    LIS[i] = max(LIS[i], 1 + LIS[j]); // see if nums[i] can build a longer LIS with the LIS starting at nums[j]
+                    dp[i] = max(dp[i], dp[j] + 1); // dp[j] + 1: New subseq by concatenating the subseq dp[j] with nums[i]
                 }
             }
         }
-        return (int)*max_element(LIS.begin(), LIS.end());
+        return (int)*max_element(dp.begin(), dp.end());
     }
 };
 
