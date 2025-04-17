@@ -40,7 +40,7 @@ public:
         for (int i = 0; i <= n; i++) dp[i] = n - i;
 
         for (int i = m - 1; i >= 0; i--) {
-            int nextDp = dp[n]; // for previous dp[j+1]
+            int nextDp = dp[n]; // for the previous dp[j]
             dp[n] = m - i; // Update dp[n] for current row
             for (int j = n - 1; j >= 0; j--) {
                 int temp = dp[j];
