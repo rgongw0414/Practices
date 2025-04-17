@@ -38,3 +38,25 @@ public:
         return dp[0];
     }
 };
+
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        // Top-down DP:  TC=O(m∗n), SC=O(m∗n)
+        if (text1.size() < text2.size()) swap(text1, text2);
+        int m = text1.size(), n = text2.size();
+        vector<vector<int>> memo(m, vector<int>(n, -1));
+        return dfs(text1, text2, memo, 0, 0);
+    }
+
+    int dfs(string &text1, string &text2, vector<vector<int>> &memo, int i1, int i2) {
+        if (i1 == text1.size() || i2 == text2.size()) return 0;
+        if (memo[i1][i2] != -1) return memo[i1][i2];
+        if (text1[i1] == text2[i2])
+            memo[i1][i2] = dfs(text1, text2, memo, i1 + 1, i2 + 1) + 1;
+        else
+            memo[i1][i2] = max(dfs(text1, text2, memo, i1 + 1, i2), 
+                                dfs(text1, text2, memo, i1, i2 + 1));
+        return memo[i1][i2];
+    }
+};
