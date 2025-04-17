@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minDistance(string word1, string word2) {
-        // Top-down DP, TC: O(m*n), SC: O(m*n)
+        // Bottom-up DP, TC: O(m*n), SC: O(m*n)
         // dp[i][j] = min distance of word1[i...] and word2[j...]
         int m = word1.size(), n = word2.size();
         vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
