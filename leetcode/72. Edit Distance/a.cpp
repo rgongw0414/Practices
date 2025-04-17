@@ -26,6 +26,10 @@ class Solution {
 public:
     int minDistance(string word1, string word2) {
         // Bottom-up 1-d DP, TC: O(m*n), SC: O(min(m, n))
+        /*
+            dp[j']  dp[nextDp]
+            dp[j]   dp[j+1]
+        */
         int m = word1.size(), n = word2.size();
         if (m < n) {
             swap(m, n);
@@ -36,13 +40,14 @@ public:
         for (int i = 0; i <= n; i++) dp[i] = n - i;
 
         for (int i = m - 1; i >= 0; i--) {
-            int nextDp = dp[n];
-            dp[n] = m - i;
+            int nextDp = dp[n]; // for previous dp[j+1]
+            dp[n] = m - i; // Update dp[n] for current row
             for (int j = n - 1; j >= 0; j--) {
                 int temp = dp[j];
                 if (word1[i] == word2[j]) {
                     dp[j] = nextDp;
-                } else {
+                } 
+                else {
                     dp[j] = 1 + min({dp[j], dp[j + 1], nextDp});
                 }
                 nextDp = temp;
